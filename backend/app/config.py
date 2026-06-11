@@ -20,6 +20,13 @@ class Settings(BaseSettings):
     # Gemini AI API Key (Optional, fallback to mock responses if not set)
     GEMINI_API_KEY: Optional[str] = None
 
+    # SMTP Email Configuration (Optional, fallback to terminal logging if not set)
+    SMTP_HOST: Optional[str] = None
+    SMTP_PORT: int = 587
+    SMTP_USERNAME: Optional[str] = None
+    SMTP_PASSWORD: Optional[str] = None
+    SMTP_SENDER: Optional[str] = None
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",

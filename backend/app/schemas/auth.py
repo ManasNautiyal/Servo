@@ -8,6 +8,7 @@ class UserRegister(BaseModel):
     branch: str = Field(..., min_length=2, max_length=100)
     year: int = Field(..., ge=1, le=5)
     password: str = Field(..., min_length=6)
+    otp: Optional[str] = None
 
 class UserLogin(BaseModel):
     email: EmailStr
