@@ -46,14 +46,14 @@ def send_otp_email(to_email: str, otp_code: str) -> bool:
             message.attach(part1)
             message.attach(part2)
             
-            # Connect to SMTP server and send
+            # Connect to SMTP server and send with a 5-second timeout
             # We support both SSL (465) and STARTTLS (587)
             if settings.SMTP_PORT == 465:
-                with smtplib.SMTP_SSL(settings.SMTP_HOST, settings.SMTP_PORT) as server:
+                with smtplib.SMTP_SSL(settings.SMTP_HOST, settings.SMTP_PORT, timeout=5) as server:
                     server.login(settings.SMTP_USERNAME, settings.SMTP_PASSWORD)
                     server.sendmail(sender_email, to_email, message.as_string())
             else:
-                with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT) as server:
+                with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT, timeout=5) as server:
                     server.starttls()
                     server.login(settings.SMTP_USERNAME, settings.SMTP_PASSWORD)
                     server.sendmail(sender_email, to_email, message.as_string())
