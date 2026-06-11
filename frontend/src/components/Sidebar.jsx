@@ -20,7 +20,7 @@ const Sidebar = ({ isOpen, onClose }) => {
   ];
 
   const activeClass = "flex items-center space-x-3 rounded-lg bg-brand-50 px-4 py-3 text-sm font-semibold text-brand-600 dark:bg-brand-950/20 dark:text-brand-400";
-  const inactiveClass = "flex items-center space-x-3 rounded-lg px-4 py-3 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-darkCard dark:hover:text-white transition-all duration-200";
+  const inactiveClass = "flex items-center space-x-3 rounded-lg px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-darkCard dark:hover:text-white transition-all duration-200";
 
   return (
     <>
@@ -41,7 +41,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         <div className="flex flex-col h-full justify-between">
           <div className="space-y-6">
             <div className="px-4 py-1">
-              <span className="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500">
+              <span className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
                 Student Portal
               </span>
             </div>

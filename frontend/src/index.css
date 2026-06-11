@@ -49,3 +49,23 @@
 .dark ::-webkit-scrollbar-thumb:hover {
   background: #475569; /* slate-600 */
 }
+
+/* Global Color Contrast and Legibility Corrections */
+.text-gray-400 {
+  color: #64748b !important; /* slate-500 */
+}
+.text-gray-500 {
+  color: #475569 !important; /* slate-600 */
+}
+
+.dark .text-gray-400,
+.dark .dark\:text-gray-400,
+.dark .text-gray-500,
+.dark .dark\:text-gray-500 {
+  color: #cbd5e1 !important; /* slate-300 */
+}
+
+.dark .text-gray-600,
+.dark .dark\:text-gray-600 {
+  color: #f1f5f9 !important; /* slate-100 */
+}

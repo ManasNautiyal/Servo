@@ -66,7 +66,7 @@ const ServiceCard = ({ service }) => {
                   {provider.name.charAt(0)}
                 </div>
               )}
-              <span className="text-xs font-medium text-gray-500 dark:text-gray-400 hover:text-brand-500">
+              <span className="text-xs font-medium text-gray-600 dark:text-gray-300 hover:text-brand-500">
                 {provider.name} • Year {provider.year}
               </span>
             </Link>
@@ -80,7 +80,7 @@ const ServiceCard = ({ service }) => {
           </Link>
 
           {/* Description summary */}
-          <p className="line-clamp-3 text-xs text-gray-500 dark:text-gray-400">
+          <p className="line-clamp-3 text-xs text-gray-600 dark:text-gray-300">
             {description}
           </p>
 
@@ -88,7 +88,7 @@ const ServiceCard = ({ service }) => {
           {parsedTags.length > 0 && (
             <div className="flex flex-wrap gap-1.5 pt-1">
               {parsedTags.map((tag, idx) => (
-                <span key={idx} className="flex items-center text-[10px] font-medium text-gray-400 bg-gray-50 dark:bg-darkBg/50 dark:text-gray-500 px-1.5 py-0.5 rounded">
+                <span key={idx} className="flex items-center text-[10px] font-medium text-gray-600 bg-gray-100 dark:bg-darkBg/50 dark:text-gray-300 px-1.5 py-0.5 rounded">
                   <Tag className="h-2.5 w-2.5 mr-0.5" />
                   {tag}
                 </span>
@@ -99,13 +99,13 @@ const ServiceCard = ({ service }) => {
 
         {/* Footer info: Delivery and Price */}
         <div className="mt-4 border-t border-gray-50 pt-3 flex items-center justify-between dark:border-darkBorder">
-          <div className="flex items-center space-x-1 text-xs text-gray-400 dark:text-gray-500">
+          <div className="flex items-center space-x-1 text-xs text-gray-500 dark:text-gray-400">
             <Clock className="h-3.5 w-3.5" />
             <span>{delivery_time} days delivery</span>
           </div>
 
           <div className="flex items-baseline space-x-0.5">
-            <span className="text-xs text-gray-400 dark:text-gray-500">Starting at</span>
+            <span className="text-xs text-gray-500 dark:text-gray-400">Starting at</span>
             <span className="text-base font-extrabold text-brand-600 dark:text-brand-400">₹{price}</span>
           </div>
         </div>
