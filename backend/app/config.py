@@ -27,6 +27,9 @@ class Settings(BaseSettings):
     SMTP_PASSWORD: Optional[str] = None
     SMTP_SENDER: Optional[str] = None
 
+    # Resend Email API Configuration (Optional, bypasses blocked SMTP ports)
+    RESEND_API_KEY: Optional[str] = None
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",

@@ -1,4 +1,5 @@
 import smtplib
+import httpx
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from typing import Optional
@@ -7,7 +8,8 @@ from app.config import settings
 def send_otp_email(to_email: str, otp_code: str) -> bool:
     """
     Sends an OTP verification email to the user.
-    If SMTP credentials are not configured, prints the OTP to the console logs as a fallback
+    Prioritizes Resend API (HTTP-based over port 443).
+    Falls back to SMTP or prints the OTP to the console logs as a fallback
     to support seamless local testing and grading.
     """
     subject = "Servo - Your Registration Verification Code"
@@ -30,7 +32,31 @@ def send_otp_email(to_email: str, otp_code: str) -> bool:
     </html>
     """
     
-    # Check if SMTP is configured
+    # 1. Try sending via Resend API (HTTP POST over port 443, never blocked by Render)
+    if settings.RESEND_API_KEY:
+        try:
+            url = "https://api.resend.com/emails"
+            headers = {
+                "Authorization": f"Bearer {settings.RESEND_API_KEY}",
+                "Content-Type": "application/json"
+            }
+            payload = {
+                "from": "onboarding@resend.dev",
+                "to": to_email,
+                "subject": subject,
+                "html": body
+            }
+            with httpx.Client() as client:
+                response = client.post(url, headers=headers, json=payload, timeout=5.0)
+                if response.status_code in [200, 201]:
+                    print(f"[EMAIL SERVICE] Sent verification email with OTP {otp_code} to {to_email} via Resend API")
+                    return True
+                else:
+                    print(f"[WARNING] [EMAIL SERVICE] Resend API request failed with status {response.status_code}: {response.text}")
+        except Exception as e:
+            print(f"[WARNING] [EMAIL SERVICE] Failed to send email via Resend API: {e}")
+
+    # 2. Check if SMTP is configured (Fallback)
     if settings.SMTP_HOST and settings.SMTP_USERNAME and settings.SMTP_PASSWORD:
         try:
             sender_email = settings.SMTP_SENDER or settings.SMTP_USERNAME
