@@ -30,6 +30,9 @@ class Settings(BaseSettings):
     # Resend Email API Configuration (Optional, bypasses blocked SMTP ports)
     RESEND_API_KEY: Optional[str] = None
 
+    # Brevo Email API Configuration (Optional, bypasses blocked SMTP ports using verified Gmail)
+    BREVO_API_KEY: Optional[str] = None
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",

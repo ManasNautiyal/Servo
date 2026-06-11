@@ -8,11 +8,45 @@ from app.config import settings
 def send_custom_email(to_email: str, subject: str, html_body: str) -> bool:
     """
     Sends a custom HTML email to a recipient.
-    Prioritizes Resend API (HTTP-based over port 443).
+    Prioritizes Brevo HTTP API, then Resend HTTP API (both port 443).
     Falls back to SMTP or prints the email details to the console logs as a fallback
     to support seamless local testing and grading.
     """
-    # 1. Try sending via Resend API (HTTP POST over port 443, never blocked by Render)
+    # 1. Try sending via Brevo API (HTTP POST over port 443, never blocked by Render)
+    if settings.BREVO_API_KEY:
+        try:
+            url = "https://api.brevo.com/v3/smtp/email"
+            headers = {
+                "accept": "application/json",
+                "api-key": settings.BREVO_API_KEY,
+                "content-type": "application/json"
+            }
+            # Use SMTP_SENDER configured by user (e.g. verified Gmail) or default fallback
+            sender_email = settings.SMTP_SENDER or "no-reply@servo.com"
+            payload = {
+                "sender": {
+                    "name": "Servo Platform",
+                    "email": sender_email
+                },
+                "to": [
+                    {
+                        "email": to_email
+                    }
+                ],
+                "subject": subject,
+                "htmlContent": html_body
+            }
+            with httpx.Client() as client:
+                response = client.post(url, headers=headers, json=payload, timeout=5.0)
+                if response.status_code in [200, 201]:
+                    print(f"[EMAIL SERVICE] Sent custom email '{subject}' to {to_email} via Brevo API")
+                    return True
+                else:
+                    print(f"[WARNING] [EMAIL SERVICE] Brevo API request failed with status {response.status_code}: {response.text}")
+        except Exception as e:
+            print(f"[WARNING] [EMAIL SERVICE] Failed to send email via Brevo API: {e}")
+
+    # 2. Try sending via Resend API (HTTP POST over port 443, never blocked by Render)
     if settings.RESEND_API_KEY:
         try:
             url = "https://api.resend.com/emails"
