@@ -1,8 +1,10 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, BackgroundTasks
+from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from sqlalchemy import func
 from typing import List
 import datetime
+
 
 from app.database.session import get_db
 from app.database.models import User, Service, Order, Review
@@ -136,3 +138,55 @@ def remove_review(
     db.delete(review)
     db.commit()
     return {"message": "Review successfully deleted."}
+
+
+class BroadcastRequest(BaseModel):
+    subject: str
+    content: str
+
+
+def wrap_broadcast_template(message_body: str) -> str:
+    paragraphs = "".join(f"<p style='font-size: 16px; line-height: 24px; color: #4a5568;'>{p.strip()}</p>" for p in message_body.split("\n\n") if p.strip())
+    
+    return f"""
+    <html>
+        <body style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px;">
+            <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); border: 1px solid #e2e8f0;">
+                <h1 style="color: #4f46e5; text-align: center; margin-bottom: 30px; font-size: 24px;">Message from Servo Admin</h1>
+                {paragraphs}
+                <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 30px 0;">
+                <p style="font-size: 12px; color: #a0aec0; text-align: center;">You received this email because you are a registered user of Servo.</p>
+                <p style="font-size: 12px; color: #a0aec0; text-align: center;">Servo Marketplace © 2026</p>
+            </div>
+        </body>
+    </html>
+    """
+
+
+def broadcast_emails_task(emails: List[str], subject: str, html_body: str):
+    from app.services.email import send_custom_email
+    for email in emails:
+        try:
+            send_custom_email(email, subject, html_body)
+        except Exception as e:
+            print(f"[ERROR] Failed to send broadcast email to {email}: {e}")
+
+
+@router.post("/broadcast-email", response_model=dict)
+def broadcast_email(
+    payload: BroadcastRequest,
+    background_tasks: BackgroundTasks,
+    admin: User = Depends(get_current_admin),
+    db: Session = Depends(get_db)
+):
+    users = db.query(User).all()
+    emails = [u.email for u in users if u.email]
+    
+    if not emails:
+        raise HTTPException(status_code=400, detail="No users found to email.")
+        
+    html_body = wrap_broadcast_template(payload.content)
+    background_tasks.add_task(broadcast_emails_task, emails, payload.subject, html_body)
+    
+    return {"message": f"Broadcast successfully initiated for {len(emails)} users."}
+
