@@ -5,6 +5,7 @@ import { useNotifications } from '../context/NotificationContext';
 import { useChat } from '../context/ChatContext';
 import { Sun, Moon, Bell, MessageSquare, LogOut, User as UserIcon, LayoutDashboard, Sliders, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import logo from '../assets/logo.svg';
 
 const Navbar = ({ onMenuClick }) => {
   const { user, logout } = useAuth();
@@ -63,7 +64,7 @@ const Navbar = ({ onMenuClick }) => {
               </button>
             )}
             <Link to="/" className="flex items-center space-x-2">
-              <img src="/src/assets/logo.svg" alt="Servo Logo" className="h-9 w-9" />
+              <img src={logo} alt="Servo Logo" className="h-9 w-9" />
               <span className="font-sans text-2xl font-extrabold tracking-tight bg-gradient-to-r from-brand-500 to-brand-700 bg-clip-text text-transparent">
                 Servo
               </span>

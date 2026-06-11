@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { User, Mail, GraduationCap, KeyRound, AlertCircle, Loader } from 'lucide-react';
+import logo from '../assets/logo.svg';
 
 const Register = () => {
   const { register: registerAuth } = useAuth();
@@ -42,7 +43,7 @@ const Register = () => {
     <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-gray-50 px-4 py-12 dark:bg-darkBg sm:px-6 lg:px-8">
       <div className="w-full max-w-xl space-y-8 rounded-2xl border border-gray-100 bg-white p-8 shadow-lg dark:border-darkBorder dark:bg-darkCard">
         <div className="text-center">
-          <img className="mx-auto h-12 w-auto" src="/src/assets/logo.svg" alt="Servo Logo" />
+          <img className="mx-auto h-12 w-auto" src={logo} alt="Servo Logo" />
           <h2 className="mt-6 font-sans text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
             Create your student account
           </h2>
