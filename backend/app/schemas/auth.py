@@ -22,3 +22,12 @@ class TokenData(BaseModel):
     email: Optional[str] = None
     user_id: Optional[int] = None
     role: Optional[str] = None
+
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+class PasswordResetConfirm(BaseModel):
+    email: EmailStr
+    otp: str = Field(..., min_length=6, max_length=6)
+    new_password: str = Field(..., min_length=6)
+

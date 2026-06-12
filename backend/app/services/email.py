@@ -138,3 +138,30 @@ def send_otp_email(to_email: str, otp_code: str) -> bool:
     """
     return send_custom_email(to_email, subject, body)
 
+
+def send_reset_otp_email(to_email: str, otp_code: str) -> bool:
+    """
+    Sends a password reset verification code to the user.
+    """
+    subject = "Servo - Reset Your Password"
+    body = f"""
+    <html>
+        <body style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px;">
+            <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); border: 1px solid #e2e8f0;">
+                <h2 style="color: #4f46e5; text-align: center;">Password Recovery</h2>
+                <p style="font-size: 16px; color: #4a5568;">We received a request to reset your password on Servo. Please use the following code to complete the request:</p>
+                <div style="text-align: center; margin: 30px 0;">
+                    <span style="font-size: 32px; font-weight: bold; letter-spacing: 4px; color: #1e1b4b; background-color: #f5f3ff; border: 1px dashed #c084fc; padding: 10px 20px; border-radius: 8px;">
+                        {otp_code}
+                    </span>
+                </div>
+                <p style="font-size: 14px; color: #718096; text-align: center;">This verification code is valid for 10 minutes. If you did not request a password reset, please ignore this email.</p>
+                <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
+                <p style="font-size: 12px; color: #a0aec0; text-align: center;">Servo Marketplace © 2026</p>
+            </div>
+        </body>
+    </html>
+    """
+    return send_custom_email(to_email, subject, body)
+
+
