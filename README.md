@@ -258,3 +258,13 @@ On startup, the system automatically inspects if the database is empty. If it is
 - **Sample Listings**: Python homework support, Flyer designs, Placement resume helper.
 - **Sample Messages**: Thread histories.
 - **Sample Reviews**: Testimonials log.
+
+---
+
+## 🔮 Future Enhancements
+
+- **AI-powered service recommendations**: Personalized service suggestion algorithms using student interests and search history.
+- **Smart pricing suggestions**: Dynamic pricing advice for students listing new services based on historical market demand.
+- **Enhanced search filters**: Advanced classification and searching by specific tech stack, project tags, and rating criteria.
+- **Integrated Payment Gateway Mock**: Sandbox environment for students to simulate secure peer-to-peer payments on campus.
+- **Mobile Companion Application**: Lightweight cross-platform mobile client for push notifications and on-the-go real-time messaging.
