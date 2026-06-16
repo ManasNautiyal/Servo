@@ -221,7 +221,7 @@ def seed_data():
 
 
 # Serve frontend static files and handle client-side routing fallback
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, FileResponse
 
 frontend_dist = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "frontend", "dist")
 
@@ -235,6 +235,12 @@ if os.path.exists(frontend_dist):
             from fastapi import HTTPException
             raise HTTPException(status_code=404, detail="Not Found")
             
+        # Check if the requested path is a file in the dist directory (e.g. favicon.svg)
+        file_path = os.path.join(frontend_dist, fallback_path)
+        if os.path.isfile(file_path):
+            return FileResponse(file_path)
+            
+        # Otherwise, fall back to index.html
         index_file = os.path.join(frontend_dist, "index.html")
         if os.path.exists(index_file):
             with open(index_file, "r", encoding="utf-8") as f:

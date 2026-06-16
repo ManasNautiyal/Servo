@@ -77,7 +77,7 @@ def get_conversations(
             "partner_avatar": partner.profile_picture,
             "partner_online": manager.is_user_online(partner.id),
             "last_message": last_msg.content if last_msg else "",
-            "last_message_time": last_msg.timestamp.isoformat() if last_msg else "",
+            "last_message_time": last_msg.timestamp.isoformat() + "Z" if last_msg else "",
             "unread_count": unread_count
         })
         
@@ -146,7 +146,7 @@ async def websocket_endpoint(
                     "receiver_id": receiver_id,
                     "content": content,
                     "is_read": False,
-                    "timestamp": str(db_message.timestamp)
+                    "timestamp": db_message.timestamp.isoformat() + "Z"
                 }
                 
                 # Send to receiver if online

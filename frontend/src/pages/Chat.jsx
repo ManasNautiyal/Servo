@@ -28,6 +28,16 @@ const Chat = () => {
   const [partnerProfile, setPartnerProfile] = useState(null);
   const [chatLoading, setChatLoading] = useState(false);
 
+  // Helper to parse dates safely across all browsers
+  const parseDate = (dateStr) => {
+    if (!dateStr) return new Date();
+    const normalized = dateStr.includes(' ') && !dateStr.includes('T')
+      ? dateStr.replace(' ', 'T')
+      : dateStr;
+    const d = new Date(normalized);
+    return isNaN(d.getTime()) ? new Date() : d;
+  };
+
   // Scroll to bottom of message logs
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -231,7 +241,7 @@ const Chat = () => {
                         
                         <div className="flex items-center justify-end space-x-1 text-[9px] opacity-80 text-right">
                           <span>
-                            {new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                            {parseDate(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                           </span>
                           
                           {/* Read receipt checkmark ticks */}

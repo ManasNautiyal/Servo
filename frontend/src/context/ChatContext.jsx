@@ -127,12 +127,16 @@ export const ChatProvider = ({ children }) => {
   }, [user, token]);
 
   const handleIncomingMessage = (msg) => {
-    const isFromMe = msg.sender_id === user.id;
-    const partnerId = isFromMe ? msg.receiver_id : msg.sender_id;
+    const isFromMe = Number(msg.sender_id) === Number(user.id);
+    const partnerId = isFromMe ? Number(msg.receiver_id) : Number(msg.sender_id);
 
     // 1. If we are currently chatting with the sender, append to history
-    if (activeChatUserId && activeChatUserId === partnerId) {
-      setChatHistory((prev) => [...prev, msg]);
+    if (activeChatUserId && Number(activeChatUserId) === partnerId) {
+      setChatHistory((prev) => {
+        // Prevent duplicate appends if WebSocket echo and REST history arrive simultaneously
+        if (prev.some((m) => m.id === msg.id)) return prev;
+        return [...prev, msg];
+      });
       
       // Send read receipt if received from partner
       if (!isFromMe) {
