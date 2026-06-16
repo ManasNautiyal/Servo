@@ -230,8 +230,14 @@ if os.path.exists(frontend_dist):
     
     @app.get("/{fallback_path:path}", response_class=HTMLResponse)
     def serve_react_app(fallback_path: str):
-        # Do not catch API or documentation endpoints
-        if fallback_path.startswith("api/") or fallback_path.startswith("docs") or fallback_path.startswith("redoc") or fallback_path.startswith("openapi.json") or fallback_path.startswith("static/"):
+        # Do not catch API, documentation, or static file endpoints
+        if (
+            fallback_path.startswith("api/") or fallback_path == "api" or
+            fallback_path.startswith("docs/") or fallback_path == "docs" or
+            fallback_path.startswith("redoc/") or fallback_path == "redoc" or
+            fallback_path.startswith("openapi.json") or
+            fallback_path.startswith("static/") or fallback_path == "static"
+        ):
             from fastapi import HTTPException
             raise HTTPException(status_code=404, detail="Not Found")
             
@@ -243,8 +249,7 @@ if os.path.exists(frontend_dist):
         # Otherwise, fall back to index.html
         index_file = os.path.join(frontend_dist, "index.html")
         if os.path.exists(index_file):
-            with open(index_file, "r", encoding="utf-8") as f:
-                return f.read()
-        
+            return FileResponse(index_file)
+            
         from fastapi import HTTPException
         raise HTTPException(status_code=404, detail="index.html not found in frontend/dist")
