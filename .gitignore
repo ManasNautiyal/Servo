@@ -44,3 +44,7 @@ backend/static/uploads/*
 Thumbs.db
 *.log
 *.swp
+
+# Local embeds
+node_new/
+python_embed/

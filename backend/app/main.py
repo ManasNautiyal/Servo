@@ -218,3 +218,27 @@ def seed_data():
         db.rollback()
     finally:
         db.close()
+
+
+# Serve frontend static files and handle client-side routing fallback
+from fastapi.responses import HTMLResponse
+
+frontend_dist = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "frontend", "dist")
+
+if os.path.exists(frontend_dist):
+    app.mount("/assets", StaticFiles(directory=os.path.join(frontend_dist, "assets")), name="frontend-assets")
+    
+    @app.get("/{fallback_path:path}", response_class=HTMLResponse)
+    def serve_react_app(fallback_path: str):
+        # Do not catch API or documentation endpoints
+        if fallback_path.startswith("api/") or fallback_path.startswith("docs") or fallback_path.startswith("redoc") or fallback_path.startswith("openapi.json") or fallback_path.startswith("static/"):
+            from fastapi import HTTPException
+            raise HTTPException(status_code=404, detail="Not Found")
+            
+        index_file = os.path.join(frontend_dist, "index.html")
+        if os.path.exists(index_file):
+            with open(index_file, "r", encoding="utf-8") as f:
+                return f.read()
+        
+        from fastapi import HTTPException
+        raise HTTPException(status_code=404, detail="index.html not found in frontend/dist")
