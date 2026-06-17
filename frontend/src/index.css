@@ -23,49 +23,111 @@
   border: 1px solid rgba(31, 41, 61, 0.4);
 }
 
-/* Premium Scrollbar */
+/* Neo-Brutalist Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #111111;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1; /* slate-300 */
-  border-radius: 4px;
+  background: #EBF300; /* brutal-yellow */
+  border: 2px solid #111111;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #334155; /* slate-700 */
+  background: #EBF300;
+  border: 2px solid #ffffff;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8; /* slate-400 */
+  background: #E84A43; /* brutal-red */
 }
 
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #475569; /* slate-600 */
+/* Brutalist Text Selection */
+::selection {
+  background: #EBF300 !important;
+  color: #111111 !important;
 }
 
-/* Global Color Contrast and Legibility Corrections */
-.text-gray-400 {
-  color: #64748b !important; /* slate-500 */
-}
-.text-gray-500 {
-  color: #475569 !important; /* slate-600 */
+.dark ::selection {
+  background: #E84A43 !important;
+  color: #ffffff !important;
 }
 
-.dark .text-gray-400,
-.dark .dark\:text-gray-400,
-.dark .text-gray-500,
-.dark .dark\:text-gray-500 {
-  color: #cbd5e1 !important; /* slate-300 */
+/* Custom Neo-Brutalist Utility Classes */
+.brutal-btn-yellow {
+  background-color: #EBF300;
+  color: #111111;
+  font-weight: 700;
+  border: 2px solid #111111;
+  box-shadow: 3px 3px 0px 0px #111111;
+  transition: all 0.15s ease-in-out;
+}
+.brutal-btn-yellow:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px 0px #111111;
+}
+.brutal-btn-yellow:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0px 0px #111111;
 }
 
-.dark .text-gray-600,
-.dark .dark\:text-gray-600 {
-  color: #f1f5f9 !important; /* slate-100 */
+.brutal-btn-black {
+  background-color: #111111;
+  color: #ffffff;
+  font-weight: 700;
+  border: 2px solid #111111;
+  box-shadow: 3px 3px 0px 0px #ffffff;
+  transition: all 0.15s ease-in-out;
+}
+.brutal-btn-black:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px 0px #ffffff;
+}
+.brutal-btn-black:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0px 0px #ffffff;
+}
+
+.brutal-btn-red {
+  background-color: #E84A43;
+  color: #ffffff;
+  font-weight: 700;
+  border: 2px solid #111111;
+  box-shadow: 3px 3px 0px 0px #111111;
+  transition: all 0.15s ease-in-out;
+}
+.brutal-btn-red:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px 0px #111111;
+}
+.brutal-btn-red:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0px 0px #111111;
+}
+
+/* Global inputs resetting and custom styled scrollbars */
+.brutal-input {
+  border: 2px solid #111111;
+  background-color: #ffffff;
+  box-shadow: 2px 2px 0px 0px #111111;
+  transition: all 0.15s ease-in-out;
+}
+.brutal-input:focus {
+  outline: none;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px 0px #111111;
+}
+
+.dark .brutal-input {
+  border: 2px solid #ffffff;
+  background-color: #151b2c;
+  box-shadow: 2px 2px 0px 0px #ffffff;
+}
+.dark .brutal-input:focus {
+  box-shadow: 3px 3px 0px 0px #ffffff;
 }

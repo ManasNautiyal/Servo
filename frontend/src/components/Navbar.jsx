@@ -6,6 +6,7 @@ import { useChat } from '../context/ChatContext';
 import { Sun, Moon, Bell, MessageSquare, LogOut, User as UserIcon, LayoutDashboard, Sliders, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/logo.svg';
+import { API_BASE_URL } from '../services/api';
 
 const Navbar = ({ onMenuClick }) => {
   const { user, logout } = useAuth();
@@ -50,7 +51,7 @@ const Navbar = ({ onMenuClick }) => {
   };
 
   return (
-    <nav className="sticky top-0 z-40 w-full border-b border-gray-200 bg-white/80 backdrop-blur-md dark:border-darkBorder dark:bg-darkBg/80 transition-colors duration-200">
+    <nav className="sticky top-0 z-40 w-full border-b-4 border-brutal-charcoal bg-white dark:border-white dark:bg-darkBg transition-colors duration-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Brand Logo */}
@@ -58,14 +59,13 @@ const Navbar = ({ onMenuClick }) => {
             {user && (
               <button 
                 onClick={onMenuClick} 
-                className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-500 lg:hidden dark:text-gray-400 dark:hover:bg-darkCard dark:hover:text-white"
+                className="border-2 border-brutal-charcoal p-1.5 text-brutal-charcoal hover:bg-brutal-yellow focus:outline-none lg:hidden dark:text-white dark:border-white dark:hover:bg-brutal-charcoal"
               >
                 <Menu className="h-6 w-6" />
               </button>
             )}
             <Link to="/" className="flex items-center space-x-2">
-              <img src={logo} alt="Servo Logo" className="h-9 w-9" />
-              <span className="font-sans text-2xl font-extrabold tracking-tight bg-gradient-to-r from-brand-500 to-brand-700 bg-clip-text text-transparent">
+              <span className="font-serif text-3xl font-black tracking-tight text-brutal-charcoal dark:text-white">
                 Servo
               </span>
             </Link>
@@ -76,7 +76,7 @@ const Navbar = ({ onMenuClick }) => {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:outline-none dark:text-gray-400 dark:hover:bg-darkCard dark:hover:text-white"
+              className="border-2 border-brutal-charcoal p-1.5 text-brutal-charcoal hover:bg-brutal-yellow focus:outline-none dark:text-white dark:border-white dark:hover:bg-brutal-charcoal"
               title="Toggle Theme"
             >
               {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
@@ -87,12 +87,12 @@ const Navbar = ({ onMenuClick }) => {
                 {/* Chat Icon */}
                 <Link
                   to="/chat"
-                  className="relative rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:outline-none dark:text-gray-400 dark:hover:bg-darkCard dark:hover:text-white"
+                  className="relative border-2 border-brutal-charcoal p-1.5 text-brutal-charcoal hover:bg-brutal-yellow focus:outline-none dark:text-white dark:border-white dark:hover:bg-brutal-charcoal"
                   title="Messages"
                 >
                   <MessageSquare className="h-5 w-5" />
                   {totalUnreadMessages > 0 && (
-                    <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-500 text-[10px] font-bold text-white ring-2 ring-white dark:ring-darkBg">
+                    <span className="absolute -top-2.5 -right-2.5 flex h-5 w-5 items-center justify-center rounded-none border border-brutal-charcoal bg-brutal-yellow text-[10px] font-bold text-brutal-charcoal">
                       {totalUnreadMessages}
                     </span>
                   )}
@@ -105,12 +105,12 @@ const Navbar = ({ onMenuClick }) => {
                       setShowNotifications(!showNotifications);
                       setShowUserDropdown(false);
                     }}
-                    className="relative rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:outline-none dark:text-gray-400 dark:hover:bg-darkCard dark:hover:text-white"
+                    className="relative border-2 border-brutal-charcoal p-1.5 text-brutal-charcoal hover:bg-brutal-yellow focus:outline-none dark:text-white dark:border-white dark:hover:bg-brutal-charcoal"
                     title="Notifications"
                   >
                     <Bell className="h-5 w-5" />
                     {unreadCount > 0 && (
-                      <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white ring-2 ring-white dark:ring-darkBg">
+                      <span className="absolute -top-2.5 -right-2.5 flex h-5 w-5 items-center justify-center rounded-none border border-brutal-charcoal bg-brutal-red text-[10px] font-bold text-white">
                         {unreadCount}
                       </span>
                     )}
@@ -120,25 +120,25 @@ const Navbar = ({ onMenuClick }) => {
                   <AnimatePresence>
                     {showNotifications && (
                       <motion.div
-                        initial={{ opacity: 0, y: 15 }}
+                        initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 15 }}
-                        className="absolute right-0 mt-3 w-80 origin-top-right rounded-xl border border-gray-100 bg-white shadow-xl dark:border-darkBorder dark:bg-darkCard z-50 overflow-hidden"
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute right-0 mt-3 w-80 origin-top-right rounded-none border-2 border-brutal-charcoal bg-white shadow-brutal-md dark:border-white dark:bg-darkCard z-50 overflow-hidden"
                       >
-                        <div className="flex items-center justify-between border-b border-gray-100 px-4 py-3 dark:border-darkBorder">
-                          <span className="text-sm font-semibold text-gray-900 dark:text-white">Notifications</span>
+                        <div className="flex items-center justify-between border-b-2 border-brutal-charcoal px-4 py-3 bg-brutal-yellow text-brutal-charcoal">
+                          <span className="text-sm font-bold">Notifications</span>
                           {unreadCount > 0 && (
                             <button
                               onClick={markAllAsRead}
-                              className="text-xs font-semibold text-brand-600 hover:text-brand-500 dark:text-brand-400"
+                              className="text-xs font-bold underline hover:text-brutal-red"
                             >
                               Mark all as read
                             </button>
                           )}
                         </div>
-                        <div className="max-h-64 overflow-y-auto divide-y divide-gray-50 dark:divide-darkBorder">
+                        <div className="max-h-64 overflow-y-auto divide-y divide-brutal-charcoal/20 dark:divide-white/20">
                           {notifications.length === 0 ? (
-                            <div className="px-4 py-6 text-center text-xs text-gray-500 dark:text-gray-400">
+                            <div className="px-4 py-6 text-center text-xs text-brutal-charcoal dark:text-gray-400">
                               No notifications yet.
                             </div>
                           ) : (
@@ -146,15 +146,15 @@ const Navbar = ({ onMenuClick }) => {
                               <button
                                 key={notif.id}
                                 onClick={() => handleNotificationClick(notif)}
-                                className={`flex w-full text-left p-3 hover:bg-gray-50 dark:hover:bg-darkBg transition-colors ${
-                                  !notif.is_read ? 'bg-brand-50/50 dark:bg-brand-950/20' : ''
+                                className={`flex w-full text-left p-3 hover:bg-brutal-yellow/10 dark:hover:bg-brutal-yellow/20 transition-colors ${
+                                  !notif.is_read ? 'bg-brutal-yellow/5 dark:bg-brutal-yellow/10' : ''
                                 }`}
                               >
                                 <div className="flex-1">
-                                  <p className="text-xs text-gray-700 dark:text-gray-300 font-medium">
+                                  <p className="text-xs text-brutal-charcoal dark:text-gray-300 font-bold">
                                     {notif.content}
                                   </p>
-                                  <span className="text-[10px] text-gray-400 mt-1 block">
+                                  <span className="text-[10px] text-gray-500 mt-1 block">
                                     {new Date(notif.created_at).toLocaleDateString()} at{' '}
                                     {new Date(notif.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                   </span>
@@ -163,11 +163,11 @@ const Navbar = ({ onMenuClick }) => {
                             ))
                           )}
                         </div>
-                        <div className="border-t border-gray-100 bg-gray-50/50 p-2 text-center dark:border-darkBorder dark:bg-darkBg/50">
+                        <div className="border-t-2 border-brutal-charcoal bg-white p-2 text-center dark:border-white dark:bg-darkBg/50">
                           <Link
                             to="/notifications"
                             onClick={() => setShowNotifications(false)}
-                            className="text-xs font-semibold text-brand-600 hover:text-brand-500 dark:text-brand-400 block w-full py-1"
+                            className="text-xs font-bold text-brutal-charcoal dark:text-white hover:underline block w-full py-1"
                           >
                             View all notifications
                           </Link>
@@ -184,16 +184,16 @@ const Navbar = ({ onMenuClick }) => {
                       setShowUserDropdown(!showUserDropdown);
                       setShowNotifications(false);
                     }}
-                    className="flex items-center space-x-2 focus:outline-none"
+                    className="flex items-center space-x-2 focus:outline-none border-2 border-brutal-charcoal p-0.5 bg-brutal-yellow dark:border-white"
                   >
                     {user.profile_picture ? (
                       <img
-                        className="h-8 w-8 rounded-full object-cover ring-2 ring-brand-100 dark:ring-brand-900"
+                        className="h-8 w-8 object-cover"
                         src={user.profile_picture.startsWith('http') ? user.profile_picture : `${API_BASE_URL}${user.profile_picture}`}
                         alt={user.name}
                       />
                     ) : (
-                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-500 font-bold text-white ring-2 ring-brand-100 dark:ring-brand-900">
+                      <div className="flex h-8 w-8 items-center justify-center font-extrabold text-brutal-charcoal text-sm">
                         {user.name.charAt(0)}
                       </div>
                     )}
@@ -202,40 +202,40 @@ const Navbar = ({ onMenuClick }) => {
                   <AnimatePresence>
                     {showUserDropdown && (
                       <motion.div
-                        initial={{ opacity: 0, y: 15 }}
+                        initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 15 }}
-                        className="absolute right-0 mt-3 w-56 origin-top-right rounded-xl border border-gray-100 bg-white p-2 shadow-xl dark:border-darkBorder dark:bg-darkCard z-50"
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute right-0 mt-3 w-56 origin-top-right rounded-none border-2 border-brutal-charcoal bg-white p-2 shadow-brutal-md dark:border-white dark:bg-darkCard z-50"
                       >
-                        <div className="px-3 py-2 border-b border-gray-50 dark:border-darkBorder">
-                          <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">{user.name}</p>
-                          <p className="text-xs text-gray-400 truncate">{user.email}</p>
+                        <div className="px-3 py-2 border-b-2 border-brutal-charcoal/20 dark:border-white/20 mb-2">
+                          <p className="text-sm font-bold text-brutal-charcoal dark:text-white truncate">{user.name}</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{user.email}</p>
                         </div>
-                        <div className="mt-1 space-y-1">
+                        <div className="space-y-1">
                           <Link
                             to="/dashboard"
                             onClick={() => setShowUserDropdown(false)}
-                            className="flex items-center space-x-2 rounded-lg px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-darkBg"
+                            className="flex items-center space-x-2 rounded-none px-3 py-2 text-sm text-brutal-charcoal hover:bg-brutal-yellow dark:text-gray-300 dark:hover:bg-brutal-charcoal dark:hover:text-white transition-colors"
                           >
                             <LayoutDashboard className="h-4 w-4" />
-                            <span>Dashboard</span>
+                            <span className="font-bold">Dashboard</span>
                           </Link>
                           <Link
                             to={`/profile/${user.id}`}
                             onClick={() => setShowUserDropdown(false)}
-                            className="flex items-center space-x-2 rounded-lg px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-darkBg"
+                            className="flex items-center space-x-2 rounded-none px-3 py-2 text-sm text-brutal-charcoal hover:bg-brutal-yellow dark:text-gray-300 dark:hover:bg-brutal-charcoal dark:hover:text-white transition-colors"
                           >
                             <UserIcon className="h-4 w-4" />
-                            <span>My Profile</span>
+                            <span className="font-bold">My Profile</span>
                           </Link>
                           {user.role === 'admin' && (
                             <Link
                               to="/admin"
                               onClick={() => setShowUserDropdown(false)}
-                              className="flex items-center space-x-2 rounded-lg px-3 py-2 text-sm text-brand-600 hover:bg-brand-50 dark:text-brand-400 dark:hover:bg-brand-950/20"
+                              className="flex items-center space-x-2 rounded-none px-3 py-2 text-sm text-brutal-red hover:bg-brutal-red/10 dark:text-red-400 dark:hover:bg-brutal-red dark:hover:text-white transition-colors"
                             >
                               <Sliders className="h-4 w-4" />
-                              <span>Admin Panel</span>
+                              <span className="font-bold">Admin Panel</span>
                             </Link>
                           )}
                           <button
@@ -243,10 +243,10 @@ const Navbar = ({ onMenuClick }) => {
                               setShowUserDropdown(false);
                               logout();
                             }}
-                            className="flex w-full items-center space-x-2 rounded-lg px-3 py-2 text-sm text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/20"
+                            className="flex w-full items-center space-x-2 rounded-none px-3 py-2 text-sm text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/20 transition-colors"
                           >
                             <LogOut className="h-4 w-4" />
-                            <span>Log out</span>
+                            <span className="font-bold">Log out</span>
                           </button>
                         </div>
                       </motion.div>
@@ -255,16 +255,16 @@ const Navbar = ({ onMenuClick }) => {
                 </div>
               </>
             ) : (
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4">
                 <Link
                   to="/login"
-                  className="text-sm font-semibold text-gray-700 hover:text-brand-600 dark:text-gray-300 dark:hover:text-brand-400"
+                  className="text-sm font-bold text-brutal-charcoal hover:underline dark:text-gray-300 dark:hover:text-white"
                 >
                   Log in
                 </Link>
                 <Link
                   to="/register"
-                  className="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-md hover:bg-brand-500 hover:shadow-brand-500/10 focus:outline-none dark:bg-brand-700 dark:hover:bg-brand-600 transition-all duration-200"
+                  className="brutal-btn-yellow px-4 py-2 text-sm rounded-none"
                 >
                   Register
                 </Link>

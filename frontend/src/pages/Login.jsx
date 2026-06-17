@@ -116,38 +116,37 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-gray-50 px-4 py-12 dark:bg-darkBg sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8 rounded-2xl border border-gray-100 bg-white p-8 shadow-lg dark:border-darkBorder dark:bg-darkCard">
+    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-white px-4 py-12 dark:bg-darkBg sm:px-6 lg:px-8">
+      <div className="w-full max-w-md space-y-8 rounded-none border-4 border-brutal-charcoal bg-white p-8 shadow-brutal-lg dark:border-white dark:bg-darkCard dark:shadow-brutal-dark-lg">
         <div className="text-center">
-          <img className="mx-auto h-12 w-auto" src={logo} alt="Servo Logo" />
-          <h2 className="mt-6 font-sans text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-            Welcome back to Servo
+          <h2 className="mt-4 font-serif text-4xl font-black tracking-tight text-brutal-charcoal dark:text-white">
+            Servo Log In
           </h2>
-          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+          <p className="mt-2 text-sm font-bold text-gray-500 dark:text-gray-400">
             Or{' '}
-            <Link to="/register" className="font-semibold text-brand-600 hover:text-brand-500 dark:text-brand-400">
+            <Link to="/register" className="underline hover:text-brutal-red transition-colors">
               create a free student account
             </Link>
           </p>
         </div>
 
         {error && (
-          <div className="flex items-center space-x-2 rounded-lg bg-red-50 p-3 text-sm text-red-700 dark:bg-red-950/20 dark:text-red-400">
+          <div className="flex items-center space-x-2 rounded-none border-2 border-brutal-charcoal bg-brutal-red/10 p-3 text-sm text-brutal-red dark:border-red-500/50 dark:text-red-400 font-bold">
             <AlertCircle className="h-5 w-5 flex-shrink-0" />
             <span>{error}</span>
           </div>
         )}
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
-          <div className="space-y-4 rounded-md">
+          <div className="space-y-4">
             {/* Email Address */}
             <div>
-              <label htmlFor="email" className="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase">
+              <label htmlFor="email" className="block text-xs font-black text-brutal-charcoal dark:text-white uppercase tracking-wider">
                 College Email Address
               </label>
               <div className="relative mt-1">
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                  <Mail className="h-5 w-5 text-gray-400" />
+                  <Mail className="h-5 w-5 text-brutal-charcoal dark:text-gray-400" />
                 </div>
                 <input
                   id="email"
@@ -160,27 +159,27 @@ const Login = () => {
                       message: 'Invalid email address format'
                     }
                   })}
-                  className={`block w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 pl-10 pr-3 text-sm focus:border-brand-500 focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white ${
-                    errors.email ? 'border-red-300 focus:border-red-500' : ''
+                  className={`block w-full rounded-none border-2 border-brutal-charcoal bg-white py-2.5 pl-10 pr-3 text-sm focus:outline-none focus:translate-x-[-1px] focus:translate-y-[-1px] focus:shadow-[3px_3px_0px_0px_rgba(17,17,17,1)] dark:border-white dark:bg-darkBg dark:text-white dark:focus:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)] transition-all ${
+                    errors.email ? 'border-red-500' : ''
                   }`}
                   placeholder="name@college.edu"
                 />
               </div>
               {errors.email && (
-                <p className="mt-1 text-xs text-red-600 dark:text-red-400">{errors.email.message}</p>
+                <p className="mt-1 text-xs text-red-600 dark:text-red-400 font-bold">{errors.email.message}</p>
               )}
             </div>
 
             {/* Password */}
             <div>
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase">
+                <label htmlFor="password" className="block text-xs font-black text-brutal-charcoal dark:text-white uppercase tracking-wider">
                   Password
                 </label>
               </div>
               <div className="relative mt-1">
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                  <KeyRound className="h-5 w-5 text-gray-400" />
+                  <KeyRound className="h-5 w-5 text-brutal-charcoal dark:text-gray-400" />
                 </div>
                 <input
                   id="password"
@@ -193,14 +192,14 @@ const Login = () => {
                       message: 'Password must be at least 6 characters'
                     }
                   })}
-                  className={`block w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 pl-10 pr-3 text-sm focus:border-brand-500 focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white ${
-                    errors.password ? 'border-red-300 focus:border-red-500' : ''
+                  className={`block w-full rounded-none border-2 border-brutal-charcoal bg-white py-2.5 pl-10 pr-3 text-sm focus:outline-none focus:translate-x-[-1px] focus:translate-y-[-1px] focus:shadow-[3px_3px_0px_0px_rgba(17,17,17,1)] dark:border-white dark:bg-darkBg dark:text-white dark:focus:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)] transition-all ${
+                    errors.password ? 'border-red-500' : ''
                   }`}
                   placeholder="••••••••"
                 />
               </div>
               {errors.password && (
-                <p className="mt-1 text-xs text-red-600 dark:text-red-400">{errors.password.message}</p>
+                <p className="mt-1 text-xs text-red-600 dark:text-red-400 font-bold">{errors.password.message}</p>
               )}
             </div>
           </div>
@@ -211,9 +210,9 @@ const Login = () => {
                 id="rememberMe"
                 type="checkbox"
                 {...register('rememberMe')}
-                className="h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-500 dark:border-darkBorder dark:bg-darkBg"
+                className="h-4 w-4 rounded-none border-2 border-brutal-charcoal text-brutal-charcoal focus:ring-0 dark:border-white dark:bg-darkBg"
               />
-              <label htmlFor="rememberMe" className="ml-2 block text-xs text-gray-600 dark:text-gray-400">
+              <label htmlFor="rememberMe" className="ml-2 block text-xs font-bold text-brutal-charcoal dark:text-gray-300">
                 Remember my email
               </label>
             </div>
@@ -221,7 +220,7 @@ const Login = () => {
             <button
               type="button"
               onClick={() => setShowForgotModal(true)}
-              className="text-xs font-semibold text-brand-600 hover:text-brand-500 dark:text-brand-400 focus:outline-none"
+              className="text-xs font-bold text-brutal-charcoal hover:underline dark:text-white focus:outline-none"
             >
               Forgot password?
             </button>
@@ -231,7 +230,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={submitting}
-              className="group relative flex w-full justify-center rounded-xl bg-brand-600 py-3 text-sm font-semibold text-white shadow-md hover:bg-brand-500 focus:outline-none disabled:opacity-70 dark:bg-brand-700 dark:hover:bg-brand-600 transition-all duration-200"
+              className="brutal-btn-yellow w-full py-3 rounded-none flex justify-center text-sm font-black focus:outline-none disabled:opacity-75"
             >
               {submitting ? (
                 <Loader className="h-5 w-5 animate-spin" />

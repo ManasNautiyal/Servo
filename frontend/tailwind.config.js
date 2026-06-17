@@ -32,6 +32,9 @@ export default {
         darkBg: '#0b0f19', // Premium dark navy
         darkCard: '#151b2c', // Sleek dark slate/blue card
         darkBorder: '#1f293d',
+        'brutal-red': '#E84A43',
+        'brutal-yellow': '#EBF300',
+        'brutal-charcoal': '#111111',
       },
       fontFamily: {
         sans: ['Inter', 'Outfit', 'sans-serif'],
@@ -39,6 +42,12 @@ export default {
       boxShadow: {
         'glass-light': '0 8px 32px 0 rgba(31, 38, 135, 0.08)',
         'glass-dark': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+        'brutal-sm': '2px 2px 0px 0px rgba(17, 17, 17, 1)',
+        'brutal-md': '4px 4px 0px 0px rgba(17, 17, 17, 1)',
+        'brutal-lg': '8px 8px 0px 0px rgba(17, 17, 17, 1)',
+        'brutal-dark-sm': '2px 2px 0px 0px rgba(255, 255, 255, 1)',
+        'brutal-dark-md': '4px 4px 0px 0px rgba(255, 255, 255, 1)',
+        'brutal-dark-lg': '8px 8px 0px 0px rgba(255, 255, 255, 1)',
       }
     },
   },
