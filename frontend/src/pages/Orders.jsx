@@ -100,8 +100,8 @@ const Orders = () => {
     
     if (currentStatus === 'cancelled') {
       return (
-        <div className="flex items-center space-x-1.5 text-xs font-semibold text-red-600 bg-red-50 dark:bg-red-950/20 dark:text-red-400 px-3 py-1.5 rounded-lg w-max">
-          <X className="h-4 w-4" />
+        <div className="flex items-center space-x-1.5 text-xs font-black text-white bg-brutal-red border-2 border-brutal-charcoal shadow-brutal-sm px-3 py-1.5 rounded-none w-max">
+          <X className="h-4 w-4 stroke-[3]" />
           <span>ORDER CANCELLED / REJECTED</span>
         </div>
       );
@@ -110,33 +110,33 @@ const Orders = () => {
     const currentIndex = steps.indexOf(currentStatus);
 
     return (
-      <div className="flex flex-wrap items-center gap-2 sm:gap-6 pt-2">
+      <div className="flex flex-wrap items-center gap-4 pt-2">
         {steps.map((step, idx) => {
           const isDone = idx <= currentIndex;
           const isCurrent = idx === currentIndex;
           
           return (
             <React.Fragment key={step}>
-              <div className="flex items-center space-x-1.5">
-                <div className={`flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold ${
+              <div className="flex items-center space-x-2">
+                <div className={`flex h-7 w-7 items-center justify-center rounded-none text-xs font-black border-2 border-brutal-charcoal shadow-brutal-sm ${
                   isDone 
-                    ? 'bg-brand-600 text-white dark:bg-brand-500' 
-                    : 'bg-gray-100 text-gray-400 dark:bg-gray-800'
-                } ${isCurrent ? 'ring-2 ring-brand-200' : ''}`}>
-                  {isDone ? <Check className="h-3 w-3" /> : idx + 1}
+                    ? 'bg-brutal-yellow text-brutal-charcoal' 
+                    : 'bg-white text-gray-400 dark:bg-darkBg dark:border-white'
+                } ${isCurrent ? 'ring-2 ring-brutal-red dark:ring-brutal-yellow' : ''}`}>
+                  {isDone ? <Check className="h-4 w-4 stroke-[3]" /> : idx + 1}
                 </div>
-                <span className={`text-[10px] font-semibold ${
+                <span className={`text-[11px] font-black uppercase tracking-wider ${
                   isDone 
-                    ? 'text-gray-900 dark:text-white' 
-                    : 'text-gray-400'
-                } ${isCurrent ? 'text-brand-600 dark:text-brand-400' : ''}`}>
+                    ? 'text-brutal-charcoal dark:text-white' 
+                    : 'text-gray-400 dark:text-gray-500'
+                } ${isCurrent ? 'text-brutal-red dark:text-brutal-yellow underline' : ''}`}>
                   {stepLabels[idx]}
                 </span>
               </div>
               
               {idx < steps.length - 1 && (
-                <div className={`hidden sm:block h-0.5 w-8 ${
-                  idx < currentIndex ? 'bg-brand-600 dark:bg-brand-500' : 'bg-gray-200 dark:bg-gray-800'
+                <div className={`hidden sm:block h-1 w-8 border-y border-brutal-charcoal ${
+                  idx < currentIndex ? 'bg-brutal-yellow' : 'bg-gray-200 dark:bg-gray-800'
                 }`} />
               )}
             </React.Fragment>
@@ -147,54 +147,54 @@ const Orders = () => {
   };
 
   return (
-    <div className="py-6 space-y-6 max-w-5xl mx-auto px-4">
+    <div className="py-6 space-y-6 max-w-5xl mx-auto px-4 text-brutal-charcoal dark:text-white">
       <div>
-        <h1 className="font-sans text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
+        <h1 className="font-serif text-3xl font-black tracking-tight text-brutal-charcoal dark:text-white uppercase">
           Order Manager
         </h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
+        <p className="text-sm font-bold text-gray-500 dark:text-gray-400 mt-1">
           Track hiring status and complete assignments with campus peers.
         </p>
       </div>
 
       {error && (
-        <div className="flex items-center space-x-2 rounded-lg bg-red-50 p-4 text-sm text-red-700 dark:bg-red-950/20 dark:text-red-400">
+        <div className="flex items-center space-x-2 rounded-none border-2 border-brutal-charcoal bg-brutal-red p-4 text-sm text-white shadow-brutal-sm font-bold">
           <AlertCircle className="h-5 w-5 flex-shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
       {/* Tabs selectors */}
-      <div className="flex border-b border-gray-200 dark:border-darkBorder">
+      <div className="flex border-2 border-brutal-charcoal bg-white dark:bg-darkCard p-1 rounded-none shadow-brutal-sm dark:shadow-brutal-dark-sm dark:border-white w-fit">
         <button
           onClick={() => setActiveTab('buying')}
-          className={`flex items-center space-x-2 border-b-2 px-6 py-3 text-sm font-semibold transition-all ${
+          className={`flex items-center space-x-2 px-6 py-2.5 text-xs font-black transition-all rounded-none ${
             activeTab === 'buying'
-              ? 'border-brand-600 text-brand-600 dark:border-brand-400 dark:text-brand-400'
-              : 'border-transparent text-gray-400 hover:text-gray-950'
+              ? 'bg-brutal-yellow text-brutal-charcoal border-2 border-brutal-charcoal shadow-brutal-sm'
+              : 'border-2 border-transparent text-gray-500 hover:text-brutal-charcoal dark:text-gray-400 dark:hover:text-white'
           }`}
         >
-          <Clock className="h-4 w-4" />
-          <span>Hires (Buying)</span>
+          <Clock className="h-4 w-4 stroke-[3]" />
+          <span className="uppercase tracking-wider">Hires (Buying)</span>
         </button>
         
         <button
           onClick={() => setActiveTab('selling')}
-          className={`flex items-center space-x-2 border-b-2 px-6 py-3 text-sm font-semibold transition-all ${
+          className={`flex items-center space-x-2 px-6 py-2.5 text-xs font-black transition-all rounded-none ${
             activeTab === 'selling'
-              ? 'border-brand-600 text-brand-600 dark:border-brand-400 dark:text-brand-400'
-              : 'border-transparent text-gray-400 hover:text-gray-950'
+              ? 'bg-brutal-yellow text-brutal-charcoal border-2 border-brutal-charcoal shadow-brutal-sm'
+              : 'border-2 border-transparent text-gray-500 hover:text-brutal-charcoal dark:text-gray-400 dark:hover:text-white'
           }`}
         >
-          <ClipboardList className="h-4 w-4" />
-          <span>Requests (Selling)</span>
+          <ClipboardList className="h-4 w-4 stroke-[3]" />
+          <span className="uppercase tracking-wider">Requests (Selling)</span>
         </button>
       </div>
 
       {loading ? (
         <LoadingSpinner />
       ) : currentTabOrders.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-gray-200 p-12 text-center text-sm text-gray-500 bg-white dark:bg-darkCard dark:border-darkBorder">
+        <div className="rounded-none border-2 border-dashed border-brutal-charcoal p-12 text-center text-sm font-black text-gray-500 bg-white dark:bg-darkCard dark:border-white dark:text-gray-400 shadow-brutal-sm dark:shadow-brutal-dark-sm">
           No orders found in this category.
         </div>
       ) : (
@@ -207,40 +207,40 @@ const Orders = () => {
             return (
               <div
                 key={order.id}
-                className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm dark:border-darkBorder dark:bg-darkCard space-y-4"
+                className="rounded-none border-2 border-brutal-charcoal bg-white p-6 shadow-brutal-sm dark:border-white dark:bg-darkCard dark:shadow-brutal-dark-sm space-y-4 text-brutal-charcoal dark:text-white"
               >
                 {/* Header detail */}
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between border-b border-gray-50 pb-3 dark:border-darkBorder">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b-2 border-brutal-charcoal pb-4 dark:border-white">
                   <div className="space-y-0.5">
-                    <span className="text-[10px] text-gray-400 font-bold uppercase">Order ID: #{order.id}</span>
-                    <h3 className="text-sm font-bold text-gray-950 dark:text-white">{order.service?.title}</h3>
-                    <p className="text-xs text-gray-500">
+                    <span className="text-[10px] text-gray-500 dark:text-gray-400 font-black uppercase">Order ID: #{order.id}</span>
+                    <h3 className="text-lg font-black text-brutal-charcoal dark:text-white uppercase tracking-tight">{order.service?.title}</h3>
+                    <p className="text-xs font-bold text-gray-600 dark:text-gray-300 mt-1">
                       {isBuyer ? `Hired Provider: ` : `Hired By Client: `}
-                      <span className="font-semibold text-brand-600 dark:text-brand-400">{counterParty?.name}</span>
+                      <span className="font-black text-brutal-red dark:text-brutal-yellow">{counterParty?.name}</span>
                       {counterParty && ` (Branch: ${counterParty.branch}, Year: ${counterParty.year})`}
                     </p>
                   </div>
                   
                   <div className="flex items-center justify-between sm:justify-end gap-4">
-                    <span className="text-sm font-extrabold text-brand-700 dark:text-brand-400">₹{rate}</span>
-                    <span className="text-xs text-gray-400">{new Date(order.created_at).toLocaleDateString()}</span>
+                    <span className="text-lg font-black bg-brutal-yellow text-brutal-charcoal px-3 py-1 border-2 border-brutal-charcoal shadow-brutal-sm">₹{rate}</span>
+                    <span className="text-xs font-black text-gray-500 dark:text-gray-400 uppercase">{new Date(order.created_at).toLocaleDateString()}</span>
                   </div>
                 </div>
 
                 {/* Progress Timeline Stepper */}
                 <div className="py-2">
-                  <span className="text-[10px] font-bold text-gray-400 uppercase block mb-1">Status Timeline</span>
+                  <span className="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase block mb-2">Status Timeline</span>
                   {renderStepper(order.status)}
                 </div>
 
                 {/* Direct Action Triggers */}
-                <div className="flex flex-wrap items-center justify-end gap-3 pt-3 border-t border-gray-50 dark:border-darkBorder">
+                <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t-2 border-brutal-charcoal dark:border-white">
                   {/* Cancel pending buying order */}
                   {isBuyer && order.status === 'pending' && (
                     <button
                       onClick={() => handleUpdateStatus(order.id, 'cancelled')}
                       disabled={actionLoading}
-                      className="rounded-lg border border-red-200 px-4 py-2 text-xs font-bold text-red-600 hover:bg-red-50 disabled:opacity-50"
+                      className="brutal-btn-red rounded-none px-4 py-2 text-xs uppercase disabled:opacity-50"
                     >
                       Cancel Request
                     </button>
@@ -252,14 +252,14 @@ const Orders = () => {
                       <button
                         onClick={() => handleUpdateStatus(order.id, 'cancelled')}
                         disabled={actionLoading}
-                        className="rounded-lg border border-gray-200 px-4 py-2 text-xs font-bold text-gray-700 hover:bg-gray-50"
+                        className="brutal-btn-red rounded-none px-4 py-2 text-xs uppercase"
                       >
                         Reject Hire
                       </button>
                       <button
                         onClick={() => handleUpdateStatus(order.id, 'accepted')}
                         disabled={actionLoading}
-                        className="rounded-lg bg-brand-600 px-4 py-2 text-xs font-bold text-white hover:bg-brand-500 shadow-sm"
+                        className="brutal-btn-yellow rounded-none px-4 py-2 text-xs uppercase"
                       >
                         Accept Hire
                       </button>
@@ -271,7 +271,7 @@ const Orders = () => {
                     <button
                       onClick={() => handleUpdateStatus(order.id, 'in_progress')}
                       disabled={actionLoading}
-                      className="rounded-lg bg-indigo-600 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-500"
+                      className="brutal-btn-yellow rounded-none px-4 py-2 text-xs uppercase"
                     >
                       Start Work
                     </button>
@@ -282,7 +282,7 @@ const Orders = () => {
                     <button
                       onClick={() => handleUpdateStatus(order.id, 'delivered')}
                       disabled={actionLoading}
-                      className="rounded-lg bg-purple-600 px-4 py-2 text-xs font-bold text-white hover:bg-purple-500"
+                      className="brutal-btn-yellow rounded-none px-4 py-2 text-xs uppercase"
                     >
                       Deliver Finished Work
                     </button>
@@ -293,7 +293,7 @@ const Orders = () => {
                     <button
                       onClick={() => handleUpdateStatus(order.id, 'completed')}
                       disabled={actionLoading}
-                      className="rounded-lg bg-emerald-600 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-500"
+                      className="brutal-btn-yellow rounded-none px-4 py-2 text-xs uppercase"
                     >
                       Complete & Approve Work
                     </button>
@@ -303,7 +303,7 @@ const Orders = () => {
                   {isBuyer && order.status === 'completed' && !reviewsStatus[order.id] && (
                     <button
                       onClick={() => setReviewOrder(order)}
-                      className="rounded-lg border border-brand-200 px-4 py-2 text-xs font-bold text-brand-600 hover:bg-brand-50"
+                      className="brutal-btn-yellow rounded-none px-4 py-2 text-xs uppercase"
                     >
                       Leave Review & Feedback
                     </button>
@@ -311,7 +311,7 @@ const Orders = () => {
 
                   {/* Completed placeholder indicator */}
                   {order.status === 'completed' && (
-                    <div className="flex items-center space-x-1 text-xs text-emerald-600 dark:text-emerald-400 font-bold">
+                    <div className="flex items-center space-x-1.5 text-xs text-white bg-emerald-500 border-2 border-brutal-charcoal px-3 py-1.5 shadow-brutal-sm font-black uppercase">
                       <CheckCircle className="h-4.5 w-4.5" />
                       <span>ORDER COMPLETED</span>
                     </div>
@@ -325,32 +325,32 @@ const Orders = () => {
 
       {/* Review Modal popup */}
       {reviewOrder && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/40 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brutal-charcoal/80 backdrop-blur-sm">
           <form
             onSubmit={handleReviewSubmit}
-            className="w-full max-w-md bg-white rounded-2xl border border-gray-100 p-6 shadow-xl dark:bg-darkCard dark:border-darkBorder space-y-4"
+            className="w-full max-w-md bg-white border-4 border-brutal-charcoal p-6 shadow-brutal-lg dark:bg-darkCard dark:border-white space-y-4 rounded-none text-brutal-charcoal dark:text-white"
           >
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center">
-              <Award className="h-5 w-5 mr-1.5 text-brand-500" />
+            <h3 className="text-xl font-black uppercase flex items-center tracking-tight">
+              <Award className="h-6 w-6 mr-1.5 text-brutal-red" />
               Submit Service Review
             </h3>
             
-            <p className="text-xs text-gray-500">
-              Provide feedback for <span className="font-semibold">{reviewOrder.provider?.name}</span>'s work on: <span className="font-semibold">"{reviewOrder.service?.title}"</span>.
+            <p className="text-xs font-bold text-gray-500 dark:text-gray-400">
+              Provide feedback for <span className="font-black text-brutal-red dark:text-brutal-yellow">{reviewOrder.provider?.name}</span>'s work on: <span className="font-semibold">"{reviewOrder.service?.title}"</span>.
             </p>
 
             {/* Stars selection */}
             <div className="space-y-1">
-              <label className="text-xs font-bold text-gray-400 uppercase">Rating Score</label>
-              <div className="flex items-center space-x-1.5 pt-1">
+              <label className="text-xs font-black text-gray-500 dark:text-gray-400 uppercase">Rating Score</label>
+              <div className="flex items-center space-x-2 pt-1">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button
                     key={star}
                     type="button"
                     onClick={() => setRating(star)}
-                    className="focus:outline-none"
+                    className="focus:outline-none transition-transform hover:scale-110 active:scale-95"
                   >
-                    <Star className={`h-6 w-6 ${star <= rating ? 'text-amber-400 fill-current' : 'text-gray-200'}`} />
+                    <Star className={`h-8 w-8 border-2 border-brutal-charcoal p-1 shadow-brutal-sm dark:border-white ${star <= rating ? 'bg-brutal-yellow text-brutal-charcoal fill-current' : 'bg-white text-gray-300'}`} />
                   </button>
                 ))}
               </div>
@@ -358,7 +358,7 @@ const Orders = () => {
 
             {/* Comment details */}
             <div className="space-y-1">
-              <label htmlFor="comment" className="text-xs font-bold text-gray-400 uppercase">Review Comment</label>
+              <label htmlFor="comment" className="text-xs font-black text-gray-500 dark:text-gray-400 uppercase">Review Comment</label>
               <textarea
                 id="comment"
                 rows={3}
@@ -366,22 +366,22 @@ const Orders = () => {
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 placeholder="Describe your experience: instructions accuracy, communication, and response time..."
-                className="mt-1 block w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-3 text-xs focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white"
+                className="mt-1 block w-full brutal-input py-2.5 px-3 text-xs rounded-none font-bold"
               />
             </div>
 
-            <div className="flex justify-end gap-2 pt-2">
+            <div className="flex justify-end gap-3 pt-2">
               <button
                 type="button"
                 onClick={() => setReviewOrder(null)}
-                className="rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-xs font-bold text-gray-700 hover:bg-gray-50"
+                className="brutal-btn-red rounded-none px-4 py-2.5 text-xs uppercase"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={actionLoading}
-                className="rounded-xl bg-brand-600 px-6 py-2.5 text-xs font-bold text-white shadow-md hover:bg-brand-500 disabled:opacity-75"
+                className="brutal-btn-yellow rounded-none px-6 py-2.5 text-xs uppercase disabled:opacity-75"
               >
                 {actionLoading ? 'Submitting...' : 'Submit Review'}
               </button>

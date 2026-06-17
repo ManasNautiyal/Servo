@@ -167,20 +167,20 @@ const MyServices = () => {
   };
 
   return (
-    <div className="py-6 space-y-6 max-w-7xl mx-auto px-4">
+    <div className="py-6 space-y-6 max-w-7xl mx-auto px-4 text-brutal-charcoal">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="font-sans text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
+          <h1 className="font-serif text-3xl font-black tracking-tight text-brutal-charcoal dark:text-white uppercase">
             My Service Listings
           </h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm font-bold text-gray-500 dark:text-gray-400 mt-1">
             Publish and manage student services you offer to peers on campus.
           </p>
         </div>
         <div>
           <button
             onClick={openCreateModal}
-            className="inline-flex items-center space-x-2 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-brand-500 dark:bg-brand-700 dark:hover:bg-brand-600"
+            className="brutal-btn-yellow inline-flex items-center space-x-2 rounded-none px-4 py-2.5 text-sm border-2 border-brutal-charcoal"
           >
             <Plus className="h-5 w-5" />
             <span>Create Listing</span>
@@ -189,8 +189,8 @@ const MyServices = () => {
       </div>
 
       {msg.text && (
-        <div className={`flex items-center space-x-2 rounded-lg p-4 text-sm ${
-          msg.type === 'success' ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/20 dark:text-emerald-400' : 'bg-red-50 text-red-700 dark:bg-red-950/20 dark:text-red-400'
+        <div className={`flex items-center space-x-2 rounded-none border-2 border-brutal-charcoal p-4 text-sm font-bold ${
+          msg.type === 'success' ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/20 dark:text-emerald-400' : 'bg-brutal-red/10 text-brutal-red'
         }`}>
           {msg.type === 'success' ? <CheckCircle2 className="h-5 w-5" /> : <AlertCircle className="h-5 w-5" />}
           <span>{msg.text}</span>
@@ -200,7 +200,7 @@ const MyServices = () => {
       {loading ? (
         <LoadingSpinner />
       ) : listings.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-gray-200 p-12 text-center text-sm text-gray-500 dark:border-darkBorder dark:text-gray-400 bg-white dark:bg-darkCard">
+        <div className="rounded-none border-2 border-dashed border-brutal-charcoal p-12 text-center text-sm font-bold text-gray-500 dark:border-white/20 dark:text-gray-400 bg-white dark:bg-darkCard">
           You have not created any listings yet. Offer your skills and get paid by campus peers!
         </div>
       ) : (
@@ -208,40 +208,40 @@ const MyServices = () => {
           {listings.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col justify-between overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm dark:border-darkBorder dark:bg-darkCard p-4"
+              className="flex flex-col justify-between overflow-hidden rounded-none border-2 border-brutal-charcoal bg-white shadow-brutal-sm dark:border-white dark:bg-darkCard p-4"
             >
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-brand-50 text-brand-700 dark:bg-brand-950/20 dark:text-brand-400 border border-brand-200/40">
+                  <span className="text-[10px] uppercase font-black tracking-wider px-2 py-0.5 rounded-none bg-brutal-yellow text-brutal-charcoal border-2 border-brutal-charcoal">
                     {item.category}
                   </span>
-                  <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded ${
-                    item.status === 'available' ? 'bg-emerald-50 text-emerald-700' : 'bg-red-50 text-red-700'
+                  <span className={`text-[10px] uppercase font-black px-2 py-0.5 rounded-none border-2 border-brutal-charcoal ${
+                    item.status === 'available' ? 'bg-emerald-300 text-brutal-charcoal' : 'bg-brutal-red text-white'
                   }`}>
                     {item.status}
                   </span>
                 </div>
                 
-                <h3 className="text-sm font-bold text-gray-900 dark:text-white line-clamp-1">{item.title}</h3>
+                <h3 className="text-sm font-black text-brutal-charcoal dark:text-white line-clamp-1">{item.title}</h3>
                 <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-2">{item.description}</p>
                 
-                <div className="flex items-center gap-4 text-xs text-gray-400">
+                <div className="flex items-center gap-4 text-xs font-bold text-gray-500">
                   <span className="flex items-center"><Clock className="h-3.5 w-3.5 mr-1" /> {item.delivery_time} days</span>
-                  <span className="font-bold text-brand-600 dark:text-brand-400">₹{item.price}</span>
+                  <span className="font-black text-brutal-red dark:text-brutal-yellow">₹{item.price}</span>
                 </div>
               </div>
               
-              <div className="mt-4 border-t border-gray-50 pt-3 flex items-center justify-end gap-2 dark:border-darkBorder">
+              <div className="mt-4 border-t-2 border-brutal-charcoal/20 pt-3 flex items-center justify-end gap-2 dark:border-white/20">
                 <button
                   onClick={() => openEditModal(item)}
-                  className="rounded-lg p-2 text-gray-500 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-darkBg"
+                  className="rounded-none border-2 border-brutal-charcoal p-2 text-brutal-charcoal bg-white hover:bg-brutal-yellow dark:text-white dark:bg-darkBg dark:border-white"
                   title="Edit Listing"
                 >
                   <Edit className="h-4.5 w-4.5" />
                 </button>
                 <button
                   onClick={() => handleDelete(item.id)}
-                  className="rounded-lg p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20"
+                  className="rounded-none border-2 border-brutal-charcoal p-2 text-red-600 bg-white hover:bg-red-50 dark:hover:bg-red-950/20"
                   title="Delete Listing"
                 >
                   <Trash2 className="h-4.5 w-4.5" />
@@ -254,25 +254,25 @@ const MyServices = () => {
 
       {/* Create / Edit Modal overlay */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/40 backdrop-blur-sm overflow-y-auto">
-          <div className="w-full max-w-2xl bg-white rounded-2xl border border-gray-100 p-6 shadow-xl dark:bg-darkCard dark:border-darkBorder max-h-[90vh] overflow-y-auto space-y-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brutal-charcoal/40 backdrop-blur-sm overflow-y-auto">
+          <div className="w-full max-w-2xl bg-white rounded-none border-4 border-brutal-charcoal p-6 shadow-brutal-lg dark:bg-darkCard dark:border-white max-h-[90vh] overflow-y-auto space-y-6">
             
-            <div className="flex justify-between items-center border-b border-gray-50 pb-3 dark:border-darkBorder">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+            <div className="flex justify-between items-center border-b-2 border-brutal-charcoal pb-3 dark:border-white">
+              <h3 className="text-lg font-black text-brutal-charcoal dark:text-white uppercase">
                 {editItem ? 'Edit Service Listing' : 'Publish New Service'}
               </h3>
-              <button onClick={() => setShowModal(false)} className="text-gray-400 hover:text-gray-900">
+              <button onClick={() => setShowModal(false)} className="text-gray-400 hover:text-gray-900 font-bold text-2xl">
                 &times;
               </button>
             </div>
 
             {/* AI Generator Helper container */}
-            <div className="rounded-xl border border-brand-200 bg-brand-50/50 p-4 dark:border-brand-950/20 dark:bg-brand-950/10 space-y-3">
-              <div className="flex items-center space-x-1.5 text-xs text-brand-700 dark:text-brand-400 font-bold uppercase tracking-wider">
-                <Sparkles className="h-4 w-4" />
+            <div className="rounded-none border-4 border-brutal-charcoal bg-brutal-yellow p-4 shadow-brutal-sm text-brutal-charcoal space-y-3">
+              <div className="flex items-center space-x-1.5 text-xs text-brutal-charcoal font-black uppercase tracking-wider">
+                <Sparkles className="h-4 w-4 text-brutal-red" />
                 <span>AI Service Description Writer</span>
               </div>
-              <p className="text-[10px] text-gray-500">Provide a short brief and let Gemini build a structured details package automatically!</p>
+              <p className="text-[10px] font-bold">Provide a short brief and let Gemini build a structured details package automatically!</p>
               
               <div className="flex gap-2">
                 <input
@@ -280,13 +280,13 @@ const MyServices = () => {
                   placeholder="e.g. I teach Python, OOP coding lab assignments and debug issues."
                   value={briefInput}
                   onChange={(e) => setBriefInput(e.target.value)}
-                  className="flex-1 rounded-xl border border-gray-200 bg-white py-2 px-3 text-xs focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white"
+                  className="flex-1 rounded-none border-2 border-brutal-charcoal bg-white py-2 px-3 text-xs font-bold text-brutal-charcoal focus:outline-none"
                 />
                 <button
                   type="button"
                   onClick={handleGenerateAiDescription}
                   disabled={generatingAi}
-                  className="rounded-xl bg-brand-600 px-4 py-2 text-xs font-bold text-white shadow hover:bg-brand-500 disabled:opacity-75"
+                  className="brutal-btn-black px-4 py-2 text-xs rounded-none border-2 border-brutal-charcoal"
                 >
                   {generatingAi ? 'Writing...' : 'Build Draft'}
                 </button>
@@ -297,23 +297,23 @@ const MyServices = () => {
               
               {/* Title */}
               <div>
-                <label className="block text-xs font-semibold text-gray-500 uppercase">Service Title</label>
+                <label className="block text-xs font-black text-brutal-charcoal uppercase tracking-wider">Service Title</label>
                 <input
                   type="text"
                   placeholder="e.g. Technical Tutoring in Python & DSA Lab Tasks"
                   {...register('title', { required: 'Title is required', minLength: { value: 5, message: 'Too short' } })}
-                  className="mt-1 block w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-3 text-sm focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white"
+                  className="mt-1 block w-full rounded-none border-2 border-brutal-charcoal bg-white py-2.5 px-3 text-sm font-bold text-brutal-charcoal focus:outline-none focus:translate-x-[-1px] focus:translate-y-[-1px] focus:shadow-[3px_3px_0px_0px_rgba(17,17,17,1)] dark:border-white dark:bg-darkBg dark:text-white dark:focus:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)] transition-all"
                 />
-                {errors.title && <p className="mt-1 text-xs text-red-600">{errors.title.message}</p>}
+                {errors.title && <p className="mt-1 text-xs text-red-600 font-bold">{errors.title.message}</p>}
               </div>
 
               {/* Category */}
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase">Category</label>
+                  <label className="block text-xs font-black text-brutal-charcoal uppercase tracking-wider">Category</label>
                   <select
                     {...register('category')}
-                    className="mt-1 block w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-3 text-sm focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white"
+                    className="mt-1 block w-full rounded-none border-2 border-brutal-charcoal bg-white py-2.5 px-3 text-sm font-bold text-brutal-charcoal focus:outline-none dark:border-white dark:bg-darkBg dark:text-white"
                   >
                     <option value="Technical">Technical</option>
                     <option value="Academic">Academic</option>
@@ -325,10 +325,10 @@ const MyServices = () => {
 
                 {/* Status */}
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase">Listing Availability</label>
+                  <label className="block text-xs font-black text-brutal-charcoal uppercase tracking-wider">Listing Availability</label>
                   <select
                     {...register('status')}
-                    className="mt-1 block w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-3 text-sm focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white"
+                    className="mt-1 block w-full rounded-none border-2 border-brutal-charcoal bg-white py-2.5 px-3 text-sm font-bold text-brutal-charcoal focus:outline-none dark:border-white dark:bg-darkBg dark:text-white"
                   >
                     <option value="available">Available (Accepting Orders)</option>
                     <option value="busy">Busy (Temporarily Unavailable)</option>
@@ -340,57 +340,57 @@ const MyServices = () => {
               {/* Price and Delivery Duration */}
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase">Price Rate (₹)</label>
+                  <label className="block text-xs font-black text-brutal-charcoal uppercase tracking-wider">Price Rate (₹)</label>
                   <input
                     type="number"
                     placeholder="500"
                     {...register('price', { required: 'Price rate is required', min: { value: 1, message: 'Must be positive' } })}
-                    className="mt-1 block w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-3 text-sm focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white"
+                    className="mt-1 block w-full rounded-none border-2 border-brutal-charcoal bg-white py-2.5 px-3 text-sm font-bold text-brutal-charcoal focus:outline-none focus:translate-x-[-1px] focus:translate-y-[-1px] focus:shadow-[3px_3px_0px_0px_rgba(17,17,17,1)] dark:border-white dark:bg-darkBg dark:text-white dark:focus:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)] transition-all"
                   />
-                  {errors.price && <p className="mt-1 text-xs text-red-600">{errors.price.message}</p>}
+                  {errors.price && <p className="mt-1 text-xs text-red-600 font-bold">{errors.price.message}</p>}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase">Delivery Time (Days)</label>
+                  <label className="block text-xs font-black text-brutal-charcoal uppercase tracking-wider">Delivery Time (Days)</label>
                   <input
                     type="number"
                     placeholder="2"
                     {...register('delivery_time', { required: 'Delivery time is required', min: { value: 1, message: 'Must be positive' } })}
-                    className="mt-1 block w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-3 text-sm focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white"
+                    className="mt-1 block w-full rounded-none border-2 border-brutal-charcoal bg-white py-2.5 px-3 text-sm font-bold text-brutal-charcoal focus:outline-none focus:translate-x-[-1px] focus:translate-y-[-1px] focus:shadow-[3px_3px_0px_0px_rgba(17,17,17,1)] dark:border-white dark:bg-darkBg dark:text-white dark:focus:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)] transition-all"
                   />
-                  {errors.delivery_time && <p className="mt-1 text-xs text-red-600">{errors.delivery_time.message}</p>}
+                  {errors.delivery_time && <p className="mt-1 text-xs text-red-600 font-bold">{errors.delivery_time.message}</p>}
                 </div>
               </div>
 
               {/* Tags */}
               <div>
-                <label className="block text-xs font-semibold text-gray-500 uppercase">Search Tags (Comma-Separated)</label>
+                <label className="block text-xs font-black text-brutal-charcoal uppercase tracking-wider">Search Tags (Comma-Separated)</label>
                 <input
                   type="text"
                   placeholder="python, coding, guidance, homework"
                   {...register('tags')}
-                  className="mt-1 block w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-3 text-sm focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white"
+                  className="mt-1 block w-full rounded-none border-2 border-brutal-charcoal bg-white py-2.5 px-3 text-sm font-bold text-brutal-charcoal focus:outline-none focus:translate-x-[-1px] focus:translate-y-[-1px] focus:shadow-[3px_3px_0px_0px_rgba(17,17,17,1)] dark:border-white dark:bg-darkBg dark:text-white dark:focus:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)] transition-all"
                 />
-                <p className="text-[10px] text-gray-400 mt-1">Separate keywords using commas</p>
+                <p className="text-[10px] font-bold text-gray-500 mt-1">Separate keywords using commas</p>
               </div>
 
               {/* Image Upload */}
               <div>
-                <label className="block text-xs font-semibold text-gray-500 uppercase">Service Cover Visual (Optional)</label>
+                <label className="block text-xs font-black text-brutal-charcoal uppercase tracking-wider">Service Cover Visual (Optional)</label>
                 <div className="mt-2 flex items-center space-x-4">
                   {uploadedImageUrl ? (
                     <img
                       src={uploadedImageUrl.startsWith('http') ? uploadedImageUrl : `${API_BASE_URL}${uploadedImageUrl}`}
                       alt="Service Visual"
-                      className="h-14 w-24 object-cover rounded border border-gray-100 dark:border-darkBorder"
+                      className="h-14 w-24 object-cover border-2 border-brutal-charcoal dark:border-white"
                     />
                   ) : (
-                    <div className="flex h-14 w-24 items-center justify-center rounded border border-dashed border-gray-200 bg-gray-50 text-gray-400 text-xs dark:bg-darkBg dark:border-darkBorder">
+                    <div className="flex h-14 w-24 items-center justify-center rounded-none border-2 border-dashed border-brutal-charcoal bg-gray-50 text-gray-500 font-bold text-xs dark:bg-darkBg dark:border-darkBorder">
                       No visual
                     </div>
                   )}
 
-                  <label className="inline-flex items-center space-x-1 rounded border border-gray-200 bg-white px-3 py-2 text-xs font-semibold text-gray-700 cursor-pointer hover:bg-gray-50 dark:border-darkBorder dark:bg-darkBg dark:text-gray-300">
+                  <label className="inline-flex items-center space-x-1.5 rounded-none border-2 border-brutal-charcoal bg-white px-3 py-2 text-xs font-bold text-brutal-charcoal cursor-pointer hover:bg-brutal-yellow dark:border-white dark:bg-darkBg dark:text-white transition-all">
                     <Upload className="h-3.5 w-3.5" />
                     <span>{uploadingImage ? 'Uploading...' : 'Choose File'}</span>
                     <input type="file" onChange={handleImageUpload} className="hidden" accept="image/*" />
@@ -400,28 +400,28 @@ const MyServices = () => {
 
               {/* Description */}
               <div>
-                <label className="block text-xs font-semibold text-gray-500 uppercase">Detailed Description</label>
+                <label className="block text-xs font-black text-brutal-charcoal uppercase tracking-wider">Detailed Description</label>
                 <textarea
                   rows={6}
                   placeholder="Draft your course details, delivery materials, scope of instructions, and prerequisites..."
                   {...register('description', { required: 'Detailed overview is required', minLength: { value: 20, message: 'Too short' } })}
-                  className="mt-1 block w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-3 text-sm focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white font-mono text-xs"
+                  className="mt-1 block w-full rounded-none border-2 border-brutal-charcoal bg-white py-2.5 px-3 text-sm font-bold text-brutal-charcoal focus:outline-none focus:translate-x-[-1px] focus:translate-y-[-1px] focus:shadow-[3px_3px_0px_0px_rgba(17,17,17,1)] dark:border-white dark:bg-darkBg dark:text-white dark:focus:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)] font-mono text-xs"
                 />
-                {errors.description && <p className="mt-1 text-xs text-red-600">{errors.description.message}</p>}
+                {errors.description && <p className="mt-1 text-xs text-red-600 font-bold">{errors.description.message}</p>}
               </div>
 
-              <div className="flex justify-end gap-3 pt-4 border-t border-gray-50 dark:border-darkBorder">
+              <div className="flex justify-end gap-3 pt-4 border-t-2 border-brutal-charcoal dark:border-white">
                 <button
                   type="button"
                   onClick={() => setShowModal(false)}
-                  className="rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-xs font-bold text-gray-700 hover:bg-gray-50"
+                  className="rounded-none border-2 border-brutal-charcoal bg-white px-4 py-2.5 text-xs font-bold text-brutal-charcoal hover:bg-gray-100 dark:border-white dark:bg-darkBg dark:text-white transition-all"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="rounded-xl bg-brand-600 px-6 py-2.5 text-xs font-bold text-white shadow-md hover:bg-brand-500 disabled:opacity-75"
+                  className="brutal-btn-yellow px-6 py-2.5 text-xs rounded-none border-2 border-brutal-charcoal focus:outline-none disabled:opacity-75"
                 >
                   {submitting ? 'Saving...' : 'Publish Listing'}
                 </button>

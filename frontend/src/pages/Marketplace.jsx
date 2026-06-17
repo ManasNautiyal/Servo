@@ -71,21 +71,21 @@ const Marketplace = () => {
   const categories = ['Technical', 'Academic', 'Creative', 'Career', 'Other'];
 
   return (
-    <div className="py-6 space-y-6 max-w-7xl mx-auto px-4">
+    <div className="py-6 space-y-6 max-w-7xl mx-auto px-4 text-brutal-charcoal">
       {/* Header bar */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="font-sans text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
+          <h1 className="font-serif text-3xl font-black tracking-tight text-brutal-charcoal dark:text-white uppercase">
             Campus Marketplace
           </h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm font-bold text-gray-500 dark:text-gray-400 mt-1">
             Hire peer student experts or collaborate on campus services.
           </p>
         </div>
       </div>
 
       {/* Search and Sort controls */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between bg-white p-4 rounded-xl border border-gray-100 shadow-sm dark:bg-darkCard dark:border-darkBorder">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between bg-white p-4 rounded-none border-2 border-brutal-charcoal shadow-brutal-sm dark:bg-darkCard dark:border-white dark:shadow-brutal-dark-sm">
         {/* Search Input */}
         <form onSubmit={handleApplyFilters} className="relative flex-1 max-w-md">
           <input
@@ -93,9 +93,9 @@ const Marketplace = () => {
             placeholder="Search by keywords, tags, or name..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 pl-4 pr-10 text-sm focus:border-brand-500 focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white"
+            className="w-full rounded-none border-2 border-brutal-charcoal bg-white py-2.5 pl-4 pr-10 text-sm focus:outline-none focus:translate-x-[-1px] focus:translate-y-[-1px] focus:shadow-[2px_2px_0px_0px_rgba(17,17,17,1)] dark:border-white dark:bg-darkBg dark:text-white dark:focus:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] transition-all"
           />
-          <button type="submit" className="absolute right-3 top-3 text-gray-400 hover:text-brand-500">
+          <button type="submit" className="absolute right-3 top-3.5 text-brutal-charcoal hover:text-brutal-red dark:text-white">
             <Search className="h-4.5 w-4.5" />
           </button>
         </form>
@@ -103,11 +103,11 @@ const Marketplace = () => {
         <div className="flex items-center gap-3 justify-end">
           {/* Sorting */}
           <div className="flex items-center space-x-2">
-            <ArrowUpDown className="h-4 w-4 text-gray-400" />
+            <ArrowUpDown className="h-4 w-4 text-brutal-charcoal dark:text-white" />
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="text-sm rounded-xl border border-gray-200 bg-gray-50/50 py-2 px-3 text-gray-700 focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white"
+              className="text-sm rounded-none border-2 border-brutal-charcoal bg-white py-2 px-3 text-brutal-charcoal font-bold focus:outline-none dark:border-white dark:bg-darkBg dark:text-white"
             >
               <option value="newest">Newest Listings</option>
               <option value="popularity">Most Popular</option>
@@ -120,7 +120,7 @@ const Marketplace = () => {
           {/* Filter toggle button for smaller displays */}
           <button
             onClick={() => setShowMobileFilters(true)}
-            className="flex items-center space-x-1.5 rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 lg:hidden dark:border-darkBorder dark:bg-darkBg dark:text-gray-300 dark:hover:bg-darkCard"
+            className="flex items-center space-x-1.5 rounded-none border-2 border-brutal-charcoal bg-white px-4 py-2 text-sm font-bold text-brutal-charcoal hover:bg-brutal-yellow lg:hidden dark:border-white dark:bg-darkBg dark:text-white"
           >
             <SlidersHorizontal className="h-4 w-4" />
             <span>Filters</span>
@@ -131,16 +131,16 @@ const Marketplace = () => {
       <div className="grid gap-8 lg:grid-cols-4">
         {/* Sidebar Filters for Desktop */}
         <aside className="hidden lg:block lg:col-span-1 space-y-6">
-          <form onSubmit={handleApplyFilters} className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm dark:border-darkBorder dark:bg-darkCard space-y-6">
-            <div className="flex items-center justify-between border-b border-gray-50 pb-3 dark:border-darkBorder">
-              <span className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider flex items-center">
-                <Filter className="h-4 w-4 mr-1.5 text-brand-500" />
+          <form onSubmit={handleApplyFilters} className="rounded-none border-2 border-brutal-charcoal bg-white p-5 shadow-brutal-sm dark:border-white dark:bg-darkCard dark:shadow-brutal-dark-sm space-y-6">
+            <div className="flex items-center justify-between border-b-2 border-brutal-charcoal pb-3 dark:border-white/20">
+              <span className="text-sm font-black text-brutal-charcoal dark:text-white uppercase tracking-wider flex items-center">
+                <Filter className="h-4 w-4 mr-1.5 text-brutal-red" />
                 Refine Search
               </span>
               <button
                 type="button"
                 onClick={handleClearFilters}
-                className="text-xs font-semibold text-gray-400 hover:text-brand-500"
+                className="text-xs font-black text-gray-500 hover:underline hover:text-brutal-red"
               >
                 Reset
               </button>
@@ -148,13 +148,15 @@ const Marketplace = () => {
 
             {/* Category */}
             <div className="space-y-2">
-              <label className="text-xs font-bold text-gray-400 uppercase">Category</label>
-              <div className="space-y-1.5">
+              <label className="text-xs font-black text-brutal-charcoal dark:text-white uppercase tracking-wider">Category</label>
+              <div className="space-y-2">
                 <button
                   type="button"
                   onClick={() => setCategory('')}
-                  className={`w-full text-left px-3 py-2 text-xs font-semibold rounded-lg ${
-                    !category ? 'bg-brand-50 text-brand-700 dark:bg-brand-950/20 dark:text-brand-400' : 'text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-darkBg'
+                  className={`w-full text-left px-3 py-2 text-xs font-bold rounded-none border-2 transition-all ${
+                    !category 
+                      ? 'bg-brutal-yellow text-brutal-charcoal border-brutal-charcoal shadow-[2px_2px_0px_0px_rgba(17,17,17,1)]' 
+                      : 'border-transparent text-gray-600 hover:bg-brutal-yellow/20 hover:border-brutal-charcoal dark:text-gray-300 dark:hover:bg-darkBg'
                   }`}
                 >
                   All Categories
@@ -164,8 +166,10 @@ const Marketplace = () => {
                     key={cat}
                     type="button"
                     onClick={() => setCategory(cat)}
-                    className={`w-full text-left px-3 py-2 text-xs font-semibold rounded-lg ${
-                      category === cat ? 'bg-brand-50 text-brand-700 dark:bg-brand-950/20 dark:text-brand-400' : 'text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-darkBg'
+                    className={`w-full text-left px-3 py-2 text-xs font-bold rounded-none border-2 transition-all ${
+                      category === cat 
+                        ? 'bg-brutal-yellow text-brutal-charcoal border-brutal-charcoal shadow-[2px_2px_0px_0px_rgba(17,17,17,1)]' 
+                        : 'border-transparent text-gray-600 hover:bg-brutal-yellow/20 hover:border-brutal-charcoal dark:text-gray-300 dark:hover:bg-darkBg'
                     }`}
                   >
                     {cat}
@@ -176,25 +180,25 @@ const Marketplace = () => {
 
             {/* Branch */}
             <div className="space-y-2">
-              <label htmlFor="branch" className="text-xs font-bold text-gray-400 uppercase">Provider Branch</label>
+              <label htmlFor="branch" className="text-xs font-black text-brutal-charcoal dark:text-white uppercase tracking-wider">Provider Branch</label>
               <input
                 id="branch"
                 type="text"
                 placeholder="e.g. Computer Science"
                 value={branch}
                 onChange={(e) => setBranch(e.target.value)}
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2 px-3 text-xs focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white"
+                className="w-full rounded-none border-2 border-brutal-charcoal bg-white py-2 px-3 text-xs font-bold text-brutal-charcoal focus:outline-none dark:border-white dark:bg-darkBg dark:text-white"
               />
             </div>
 
             {/* Year */}
             <div className="space-y-2">
-              <label htmlFor="year" className="text-xs font-bold text-gray-400 uppercase">Provider Year</label>
+              <label htmlFor="year" className="text-xs font-black text-brutal-charcoal dark:text-white uppercase tracking-wider">Provider Year</label>
               <select
                 id="year"
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
-                className="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2 px-3 text-xs focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white"
+                className="w-full rounded-none border-2 border-brutal-charcoal bg-white py-2 px-3 text-xs font-bold text-brutal-charcoal focus:outline-none dark:border-white dark:bg-darkBg dark:text-white"
               >
                 <option value="">All Years</option>
                 <option value="1">1st Year</option>
@@ -207,28 +211,28 @@ const Marketplace = () => {
 
             {/* Price limits */}
             <div className="space-y-2">
-              <label className="text-xs font-bold text-gray-400 uppercase">Price Budget (₹)</label>
+              <label className="text-xs font-black text-brutal-charcoal dark:text-white uppercase tracking-wider">Price Budget (₹)</label>
               <div className="grid grid-cols-2 gap-2">
                 <input
                   type="number"
                   placeholder="Min"
                   value={minPrice}
                   onChange={(e) => setMinPrice(e.target.value)}
-                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2 px-3 text-xs focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white"
+                  className="w-full rounded-none border-2 border-brutal-charcoal bg-white py-2 px-3 text-xs font-bold text-brutal-charcoal focus:outline-none dark:border-white dark:bg-darkBg dark:text-white"
                 />
                 <input
                   type="number"
                   placeholder="Max"
                   value={maxPrice}
                   onChange={(e) => setMaxPrice(e.target.value)}
-                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2 px-3 text-xs focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white"
+                  className="w-full rounded-none border-2 border-brutal-charcoal bg-white py-2 px-3 text-xs font-bold text-brutal-charcoal focus:outline-none dark:border-white dark:bg-darkBg dark:text-white"
                 />
               </div>
             </div>
 
             <button
               type="submit"
-              className="w-full rounded-xl bg-brand-600 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-brand-500 dark:bg-brand-700 dark:hover:bg-brand-600"
+              className="w-full brutal-btn-yellow py-2.5 text-xs rounded-none"
             >
               Apply Filters
             </button>
@@ -240,11 +244,11 @@ const Marketplace = () => {
           {loading ? (
             <LoadingSpinner />
           ) : services.length === 0 ? (
-            <div className="text-center py-16 bg-white border border-gray-100 rounded-xl dark:bg-darkCard dark:border-darkBorder">
-              <p className="text-sm text-gray-500 dark:text-gray-400">No services match your search preferences. Try relaxing the filter choices!</p>
+            <div className="text-center py-16 bg-white border-2 border-brutal-charcoal rounded-none dark:bg-darkCard dark:border-white shadow-brutal-sm">
+              <p className="text-sm font-bold text-gray-500 dark:text-gray-400">No services match your search preferences. Try relaxing the filter choices!</p>
               <button
                 onClick={handleClearFilters}
-                className="mt-4 text-xs font-bold text-brand-600 hover:text-brand-500 dark:text-brand-400"
+                className="mt-4 text-xs font-black text-brutal-red hover:underline"
               >
                 Clear all filters
               </button>
@@ -263,13 +267,13 @@ const Marketplace = () => {
       {showMobileFilters && (
         <div className="fixed inset-0 z-50 flex lg:hidden">
           {/* Backdrop overlay */}
-          <div onClick={() => setShowMobileFilters(false)} className="fixed inset-0 bg-gray-900/40 backdrop-blur-sm" />
+          <div onClick={() => setShowMobileFilters(false)} className="fixed inset-0 bg-brutal-charcoal/40 backdrop-blur-sm" />
 
           {/* Drawer contents */}
-          <div className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl dark:bg-darkCard">
-            <div className="flex items-center justify-between px-4 pb-4 border-b border-gray-100 dark:border-darkBorder">
-              <span className="text-sm font-bold text-gray-900 dark:text-white uppercase">Filter Options</span>
-              <button onClick={() => setShowMobileFilters(false)} className="text-gray-400 hover:text-gray-900">
+          <div className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 border-l-4 border-brutal-charcoal dark:bg-darkCard dark:border-white">
+            <div className="flex items-center justify-between px-4 pb-4 border-b-2 border-brutal-charcoal dark:border-white">
+              <span className="text-sm font-black text-brutal-charcoal dark:text-white uppercase tracking-wider">Filter Options</span>
+              <button onClick={() => setShowMobileFilters(false)} className="text-brutal-charcoal dark:text-white">
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -277,11 +281,11 @@ const Marketplace = () => {
             <form onSubmit={handleApplyFilters} className="p-4 space-y-6">
               {/* Category */}
               <div className="space-y-2">
-                <label className="text-xs font-bold text-gray-400 uppercase">Category</label>
+                <label className="text-xs font-black text-brutal-charcoal dark:text-white uppercase tracking-wider">Category</label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-3 text-xs focus:outline-none dark:border-darkBorder dark:bg-darkBg dark:text-white"
+                  className="w-full rounded-none border-2 border-brutal-charcoal bg-white py-2.5 px-3 text-xs font-bold text-brutal-charcoal focus:outline-none dark:border-white dark:bg-darkBg dark:text-white"
                 >
                   <option value="">All Categories</option>
                   {categories.map(c => <option key={c} value={c}>{c}</option>)}
@@ -290,23 +294,23 @@ const Marketplace = () => {
 
               {/* Branch */}
               <div className="space-y-2">
-                <label className="text-xs font-bold text-gray-400 uppercase">Provider Branch</label>
+                <label className="text-xs font-black text-brutal-charcoal dark:text-white uppercase tracking-wider">Provider Branch</label>
                 <input
                   type="text"
                   placeholder="Computer Science"
                   value={branch}
                   onChange={(e) => setBranch(e.target.value)}
-                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-3 text-xs focus:outline-none dark:border-darkBorder dark:bg-darkBg"
+                  className="w-full rounded-none border-2 border-brutal-charcoal bg-white py-2.5 px-3 text-xs font-bold text-brutal-charcoal focus:outline-none dark:border-white dark:bg-darkBg"
                 />
               </div>
 
               {/* Year */}
               <div className="space-y-2">
-                <label className="text-xs font-bold text-gray-400 uppercase">Provider Year</label>
+                <label className="text-xs font-black text-brutal-charcoal dark:text-white uppercase tracking-wider">Provider Year</label>
                 <select
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
-                  className="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2.5 px-3 text-xs focus:outline-none dark:border-darkBorder dark:bg-darkBg"
+                  className="w-full rounded-none border-2 border-brutal-charcoal bg-white py-2.5 px-3 text-xs font-bold text-brutal-charcoal focus:outline-none dark:border-white dark:bg-darkBg"
                 >
                   <option value="">All Years</option>
                   <option value="1">1st Year</option>
@@ -319,36 +323,36 @@ const Marketplace = () => {
 
               {/* Price limits */}
               <div className="space-y-2">
-                <label className="text-xs font-bold text-gray-400 uppercase">Budget Range (₹)</label>
+                <label className="text-xs font-black text-brutal-charcoal dark:text-white uppercase tracking-wider">Budget Range (₹)</label>
                 <div className="grid grid-cols-2 gap-2">
                   <input
                     type="number"
                     placeholder="Min"
                     value={minPrice}
                     onChange={(e) => setMinPrice(e.target.value)}
-                    className="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2 px-3 text-xs focus:outline-none dark:border-darkBorder dark:bg-darkBg"
+                    className="w-full rounded-none border-2 border-brutal-charcoal bg-white py-2 px-3 text-xs font-bold text-brutal-charcoal focus:outline-none dark:border-white dark:bg-darkBg"
                   />
                   <input
                     type="number"
                     placeholder="Max"
                     value={maxPrice}
                     onChange={(e) => setMaxPrice(e.target.value)}
-                    className="w-full rounded-xl border border-gray-200 bg-gray-50/50 py-2 px-3 text-xs focus:outline-none dark:border-darkBorder dark:bg-darkBg"
+                    className="w-full rounded-none border-2 border-brutal-charcoal bg-white py-2 px-3 text-xs font-bold text-brutal-charcoal focus:outline-none dark:border-white dark:bg-darkBg"
                   />
                 </div>
               </div>
 
-              <div className="flex gap-3 pt-4 border-t border-gray-50 dark:border-darkBorder">
+              <div className="flex gap-3 pt-4 border-t-2 border-brutal-charcoal dark:border-white">
                 <button
                   type="button"
                   onClick={handleClearFilters}
-                  className="flex-1 rounded-xl border border-gray-200 py-2.5 text-xs font-bold text-gray-700 hover:bg-gray-50"
+                  className="flex-1 rounded-none border-2 border-brutal-charcoal py-2.5 text-xs font-bold text-brutal-charcoal hover:bg-gray-100"
                 >
                   Reset
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 rounded-xl bg-brand-600 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-brand-500"
+                  className="flex-1 brutal-btn-yellow py-2.5 text-xs rounded-none"
                 >
                   Apply
                 </button>

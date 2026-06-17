@@ -104,36 +104,36 @@ const Profile = () => {
     : null;
 
   return (
-    <div className="space-y-8 py-6 max-w-7xl mx-auto px-4">
+    <div className="space-y-8 py-6 max-w-7xl mx-auto px-4 text-brutal-charcoal">
       {/* Profile Header Header */}
-      <div className="relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-darkBorder dark:bg-darkCard">
+      <div className="relative overflow-hidden rounded-none border-4 border-brutal-charcoal bg-white p-6 shadow-brutal-md dark:border-white dark:bg-darkCard dark:shadow-brutal-dark-md">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
             {avatarSource ? (
               <img
                 src={avatarSource}
                 alt={profile.name}
-                className="h-20 w-20 rounded-full object-cover ring-4 ring-brand-100 dark:ring-brand-950"
+                className="h-20 w-20 rounded-none object-cover border-2 border-brutal-charcoal"
               />
             ) : (
-              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-500 text-3xl font-bold text-white ring-4 ring-brand-100 dark:ring-brand-950">
+              <div className="flex h-20 w-20 items-center justify-center rounded-none border-2 border-brutal-charcoal bg-brutal-yellow text-3xl font-black text-brutal-charcoal">
                 {profile.name.charAt(0)}
               </div>
             )}
             <div className="space-y-1">
               <div className="flex items-center justify-center gap-2 sm:justify-start">
-                <h1 className="text-2xl font-extrabold text-gray-900 dark:text-white">{profile.name}</h1>
+                <h1 className="text-3xl font-black text-brutal-charcoal dark:text-white uppercase">{profile.name}</h1>
                 {profile.role === 'admin' && (
-                  <span className="rounded bg-purple-50 px-1.5 py-0.5 text-[10px] font-bold text-purple-700 dark:bg-purple-950/20 dark:text-purple-400 border border-purple-200/40">
+                  <span className="rounded-none bg-brutal-red px-1.5 py-0.5 text-[10px] font-black text-white border-2 border-brutal-charcoal">
                     Staff
                   </span>
                 )}
               </div>
-              <p className="text-sm font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1.5 justify-center sm:justify-start">
+              <p className="text-sm font-bold text-gray-500 dark:text-gray-400 flex items-center gap-1.5 justify-center sm:justify-start">
                 <GraduationCap className="h-4 w-4" />
                 <span>{profile.branch} • Year {profile.year}</span>
               </p>
-              <p className="text-xs text-gray-400 flex items-center gap-1 justify-center sm:justify-start">
+              <p className="text-xs font-bold text-gray-400 flex items-center gap-1 justify-center sm:justify-start">
                 <Mail className="h-3.5 w-3.5" />
                 <span>{profile.email}</span>
               </p>
@@ -146,7 +146,7 @@ const Profile = () => {
                 href={profile.github_link}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center space-x-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-50 dark:border-darkBorder dark:bg-darkBg dark:text-gray-300 dark:hover:bg-darkCard"
+                className="inline-flex items-center space-x-1.5 rounded-none border-2 border-brutal-charcoal bg-white px-3 py-2 text-xs font-bold text-brutal-charcoal hover:bg-brutal-yellow dark:border-white dark:bg-darkBg dark:text-white transition-all"
               >
                 <Github className="h-4 w-4" />
                 <span>GitHub</span>
@@ -158,7 +158,7 @@ const Profile = () => {
                 href={profile.resume_url.startsWith('http') ? profile.resume_url : `${API_BASE_URL}${profile.resume_url}`}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center space-x-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-50 dark:border-darkBorder dark:bg-darkBg dark:text-gray-300 dark:hover:bg-darkCard"
+                className="inline-flex items-center space-x-1.5 rounded-none border-2 border-brutal-charcoal bg-white px-3 py-2 text-xs font-bold text-brutal-charcoal hover:bg-brutal-yellow dark:border-white dark:bg-darkBg dark:text-white transition-all"
               >
                 <FileText className="h-4 w-4" />
                 <span>Resume</span>
@@ -168,7 +168,7 @@ const Profile = () => {
             {isOwner && (
               <Link
                 to="/edit-profile"
-                className="inline-flex items-center space-x-1.5 rounded-lg bg-brand-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-brand-500 dark:bg-brand-700 dark:hover:bg-brand-600"
+                className="brutal-btn-yellow inline-flex items-center space-x-1.5 rounded-none px-4 py-2.5 text-xs border-2 border-brutal-charcoal"
               >
                 <Edit className="h-3.5 w-3.5" />
                 <span>Edit Profile</span>
@@ -178,7 +178,7 @@ const Profile = () => {
             {!isOwner && user && (
               <Link
                 to={`/chat?user=${profile.id}`}
-                className="inline-flex items-center space-x-1.5 rounded-lg bg-brand-600 px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-brand-500 dark:bg-brand-700 dark:hover:bg-brand-600"
+                className="brutal-btn-yellow inline-flex items-center space-x-1.5 rounded-none px-4 py-2.5 text-xs border-2 border-brutal-charcoal"
               >
                 <span>Contact Student</span>
               </Link>
@@ -188,9 +188,9 @@ const Profile = () => {
 
         {/* Bio */}
         {profile.bio && (
-          <div className="mt-6 border-t border-gray-50 pt-4 dark:border-darkBorder">
-            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">About Me</h4>
-            <p className="mt-2 text-sm text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
+          <div className="mt-6 border-t-2 border-brutal-charcoal/20 pt-4 dark:border-white/20">
+            <h4 className="text-xs font-black text-gray-400 uppercase tracking-wider">About Me</h4>
+            <p className="mt-2 text-sm font-bold text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
               {profile.bio}
             </p>
           </div>
@@ -203,39 +203,39 @@ const Profile = () => {
         <div className="space-y-8 lg:col-span-1">
           {/* Stats Summary */}
           {stats && (
-            <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm dark:border-darkBorder dark:bg-darkCard space-y-4">
-              <h3 className="text-sm font-bold text-gray-950 dark:text-white uppercase tracking-wider">Work Records</h3>
-              <div className="divide-y divide-gray-50 dark:divide-darkBorder">
+            <div className="rounded-none border-2 border-brutal-charcoal bg-white p-5 shadow-brutal-sm dark:border-white dark:bg-darkCard dark:shadow-brutal-dark-sm space-y-4">
+              <h3 className="text-sm font-black text-brutal-charcoal dark:text-white uppercase tracking-wider">Work Records</h3>
+              <div className="divide-y divide-gray-200 dark:divide-white/20">
                 <div className="flex justify-between py-2 text-sm">
-                  <span className="text-gray-400">Completed Orders</span>
-                  <span className="font-bold text-gray-900 dark:text-white">{stats.orders_completed}</span>
+                  <span className="text-gray-400 font-bold">Completed Orders</span>
+                  <span className="font-black text-brutal-charcoal dark:text-white">{stats.orders_completed}</span>
                 </div>
                 <div className="flex justify-between py-2 text-sm">
-                  <span className="text-gray-400">Rating Index</span>
-                  <span className="font-bold text-gray-900 dark:text-white flex items-center">
+                  <span className="text-gray-400 font-bold">Rating Index</span>
+                  <span className="font-black text-brutal-charcoal dark:text-white flex items-center">
                     <Star className="h-4 w-4 text-amber-400 fill-current mr-1" />
                     {stats.average_rating > 0 ? stats.average_rating : 'None'}
                   </span>
                 </div>
                 <div className="flex justify-between py-2 text-sm">
-                  <span className="text-gray-400">Services Online</span>
-                  <span className="font-bold text-gray-900 dark:text-white">{stats.active_services_count}</span>
+                  <span className="text-gray-400 font-bold">Services Online</span>
+                  <span className="font-black text-brutal-charcoal dark:text-white">{stats.active_services_count}</span>
                 </div>
               </div>
             </div>
           )}
 
           {/* Skills pills */}
-          <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm dark:border-darkBorder dark:bg-darkCard space-y-4">
-            <h3 className="text-sm font-bold text-gray-950 dark:text-white uppercase tracking-wider">Skills & Domains</h3>
+          <div className="rounded-none border-2 border-brutal-charcoal bg-white p-5 shadow-brutal-sm dark:border-white dark:bg-darkCard dark:shadow-brutal-dark-sm space-y-4">
+            <h3 className="text-sm font-black text-brutal-charcoal dark:text-white uppercase tracking-wider">Skills & Domains</h3>
             {profile.skills.length === 0 ? (
-              <p className="text-xs text-gray-500 dark:text-gray-400">No skills declared yet.</p>
+              <p className="text-xs font-bold text-gray-500">No skills declared yet.</p>
             ) : (
               <div className="flex flex-wrap gap-2">
                 {profile.skills.map((s) => (
                   <span
                     key={s.id}
-                    className="rounded-full bg-brand-50 border border-brand-100/50 px-3 py-1 text-xs font-semibold text-brand-700 dark:bg-brand-950/20 dark:border-brand-900/30 dark:text-brand-400"
+                    className="rounded-none bg-brutal-yellow border-2 border-brutal-charcoal px-3 py-1 text-xs font-black text-brutal-charcoal shadow-[1px_1px_0px_0px_rgba(17,17,17,1)]"
                   >
                     {s.skill_name}
                   </span>
@@ -249,27 +249,27 @@ const Profile = () => {
         <div className="space-y-8 lg:col-span-2">
           {/* AI Auditing suggestions for OWN profile */}
           {isOwner && (
-            <div className="rounded-2xl border border-brand-200 bg-gradient-to-br from-brand-50 to-indigo-50/50 p-6 dark:border-brand-950/20 dark:from-brand-950/10 dark:to-indigo-950/10 space-y-4">
+            <div className="rounded-none border-4 border-brutal-charcoal bg-brutal-yellow p-6 shadow-brutal-md text-brutal-charcoal space-y-4">
               <div className="flex items-center space-x-2">
-                <Sparkles className="h-5 w-5 text-brand-600 dark:text-brand-400" />
-                <h3 className="font-sans text-base font-bold text-gray-900 dark:text-white">
+                <Sparkles className="h-5 w-5 text-brutal-red" />
+                <h3 className="font-serif text-2xl font-black uppercase tracking-tight">
                   Gemini AI Profile Optimizer
                 </h3>
               </div>
               
               {loadingAi ? (
                 <div className="flex justify-center py-4">
-                  <div className="w-5 h-5 border-2 border-brand-200 border-t-brand-600 rounded-full animate-spin"></div>
+                  <div className="w-5 h-5 border-2 border-brutal-charcoal border-t-brutal-red rounded-full animate-spin"></div>
                 </div>
               ) : suggestions ? (
-                <div className="space-y-4 text-xs">
+                <div className="space-y-4 text-xs font-bold">
                   {/* Suggest Skills */}
                   <div>
-                    <span className="font-bold text-gray-700 dark:text-gray-300 block uppercase tracking-wider">Recommended Skills to Add:</span>
+                    <span className="font-black text-brutal-charcoal block uppercase tracking-wider">Recommended Skills to Add:</span>
                     <div className="flex flex-wrap gap-2 mt-2">
                       {suggestions.missing_skills?.map((sk, index) => (
-                        <span key={index} className="flex items-center bg-white border border-brand-100 rounded-full px-2.5 py-1 text-brand-600 dark:bg-darkCard dark:border-darkBorder dark:text-brand-400">
-                          <Plus className="h-3 w-3 mr-1" />
+                        <span key={index} className="flex items-center bg-white border-2 border-brutal-charcoal rounded-none px-2.5 py-1 text-brutal-charcoal shadow-[1px_1px_0px_0px_rgba(17,17,17,1)] text-[10px] font-black">
+                          <Plus className="h-3 w-3 mr-1 stroke-[3px]" />
                           {sk}
                         </span>
                       ))}
@@ -278,8 +278,8 @@ const Profile = () => {
 
                   {/* Suggest Portfolio Items */}
                   <div>
-                    <span className="font-bold text-gray-700 dark:text-gray-300 block uppercase tracking-wider">Actionable Portfolio Tips:</span>
-                    <ul className="list-disc pl-5 mt-2 space-y-1.5 text-gray-600 dark:text-gray-400">
+                    <span className="font-black text-brutal-charcoal block uppercase tracking-wider">Actionable Portfolio Tips:</span>
+                    <ul className="list-disc pl-5 mt-2 space-y-1.5 text-brutal-charcoal">
                       {suggestions.portfolio_improvements?.map((imp, idx) => (
                         <li key={idx}>{imp}</li>
                       ))}
@@ -289,24 +289,24 @@ const Profile = () => {
                   {/* Better description suggest */}
                   {suggestions.better_service_description && (
                     <div>
-                      <span className="font-bold text-gray-700 dark:text-gray-300 block uppercase tracking-wider">Suggested Professional Bio Summary:</span>
-                      <blockquote className="mt-2 border-l-4 border-brand-300 bg-white/50 p-3 italic text-gray-600 rounded dark:border-brand-900 dark:bg-darkCard/50 dark:text-gray-400">
+                      <span className="font-black text-brutal-charcoal block uppercase tracking-wider">Suggested Professional Bio Summary:</span>
+                      <blockquote className="mt-2 border-l-4 border-brutal-charcoal bg-white p-3 italic text-brutal-charcoal rounded-none">
                         "{suggestions.better_service_description}"
                       </blockquote>
                     </div>
                   )}
                 </div>
               ) : (
-                <p className="text-xs text-gray-500">Provide skills or bio details to get automated optimizations from Gemini.</p>
+                <p className="text-xs font-bold text-brutal-charcoal">Provide skills or bio details to get automated optimizations from Gemini.</p>
               )}
             </div>
           )}
 
           {/* Active Services Grid */}
           <div className="space-y-4">
-            <h2 className="text-lg font-bold text-gray-950 dark:text-white uppercase tracking-wider">Services Offered</h2>
+            <h2 className="text-xl font-black text-brutal-charcoal dark:text-white uppercase tracking-tight">Services Offered</h2>
             {services.length === 0 ? (
-              <div className="rounded-xl border border-dashed border-gray-200 p-8 text-center text-sm text-gray-500 dark:border-darkBorder dark:text-gray-400">
+              <div className="rounded-none border-2 border-dashed border-brutal-charcoal p-8 text-center text-sm font-bold text-gray-500 dark:border-white/20 dark:text-gray-400 bg-white">
                 This student has not created any service listings yet.
               </div>
             ) : (
@@ -320,22 +320,22 @@ const Profile = () => {
 
           {/* Reviews Received / Testimonials */}
           <div className="space-y-4">
-            <h2 className="text-lg font-bold text-gray-950 dark:text-white uppercase tracking-wider">Student Reviews ({reviews.length})</h2>
+            <h2 className="text-xl font-black text-brutal-charcoal dark:text-white uppercase tracking-tight">Student Reviews ({reviews.length})</h2>
             {reviews.length === 0 ? (
-              <div className="rounded-xl border border-dashed border-gray-200 p-8 text-center text-sm text-gray-500 dark:border-darkBorder dark:text-gray-400">
+              <div className="rounded-none border-2 border-dashed border-brutal-charcoal p-8 text-center text-sm font-bold text-gray-500 dark:border-white/20 dark:text-gray-400 bg-white">
                 No reviews received yet.
               </div>
             ) : (
               <div className="space-y-4">
                 {reviews.map((rev) => (
-                  <div key={rev.id} className="rounded-xl border border-gray-100 bg-white p-4 shadow-sm dark:border-darkBorder dark:bg-darkCard space-y-3">
+                  <div key={rev.id} className="rounded-none border-2 border-brutal-charcoal bg-white p-4 shadow-brutal-sm dark:border-white dark:bg-darkCard dark:shadow-brutal-dark-sm space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
-                        <div className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 font-bold text-xs text-white">
+                        <div className="flex h-7 w-7 items-center justify-center rounded-none border border-brutal-charcoal bg-brutal-yellow font-black text-xs text-brutal-charcoal">
                           {rev.reviewer?.name.charAt(0) || 'S'}
                         </div>
                         <div>
-                          <span className="text-xs font-bold text-gray-900 dark:text-white block">{rev.reviewer?.name}</span>
+                          <span className="text-xs font-black text-brutal-charcoal dark:text-white block">{rev.reviewer?.name}</span>
                           <span className="text-[10px] text-gray-400">{new Date(rev.created_at).toLocaleDateString()}</span>
                         </div>
                       </div>

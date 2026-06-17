@@ -29,13 +29,13 @@ const Notifications = () => {
   };
 
   return (
-    <div className="py-6 space-y-6 max-w-3xl mx-auto px-4">
-      <div className="flex items-center justify-between">
+    <div className="py-6 space-y-6 max-w-3xl mx-auto px-4 text-brutal-charcoal dark:text-white">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="font-sans text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
+          <h1 className="font-serif text-3xl font-black tracking-tight text-brutal-charcoal dark:text-white uppercase">
             Notifications
           </h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm font-bold text-gray-500 dark:text-gray-400 mt-1">
             Inbox logs for order actions, ratings reviews, and real-time chat alerts.
           </p>
         </div>
@@ -43,41 +43,43 @@ const Notifications = () => {
         {notifications.some(n => !n.is_read) && (
           <button
             onClick={markAllAsRead}
-            className="flex items-center space-x-1 rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs font-bold text-gray-700 hover:bg-gray-50 dark:border-darkBorder dark:bg-darkBg dark:text-gray-300 dark:hover:bg-darkCard"
+            className="brutal-btn-yellow flex items-center space-x-1.5 rounded-none px-4 py-2 text-xs"
           >
-            <CheckCheck className="h-4 w-4 mr-1 text-emerald-500" />
-            <span>Mark all read</span>
+            <CheckCheck className="h-4 w-4 mr-1 stroke-[3]" />
+            <span className="uppercase">Mark all read</span>
           </button>
         )}
       </div>
 
-      <div className="rounded-xl border border-gray-100 bg-white shadow-sm dark:border-darkBorder dark:bg-darkCard overflow-hidden">
+      <div className="rounded-none border-2 border-brutal-charcoal bg-white shadow-brutal-md dark:border-white dark:bg-darkCard dark:shadow-brutal-dark-md overflow-hidden">
         {notifications.length === 0 ? (
-          <div className="p-12 text-center text-sm text-gray-500 dark:text-gray-400 space-y-2">
-            <Bell className="h-8 w-8 mx-auto text-gray-300 dark:text-gray-600" />
-            <p>No notifications yet.</p>
+          <div className="p-12 text-center text-sm font-bold text-gray-500 dark:text-gray-400 space-y-3">
+            <Bell className="h-12 w-12 mx-auto text-brutal-red bg-brutal-yellow border-2 border-brutal-charcoal p-2 shadow-brutal-sm rounded-none" />
+            <p className="uppercase">No notifications yet.</p>
           </div>
         ) : (
-          <div className="divide-y divide-gray-50 dark:divide-darkBorder">
+          <div className="divide-y-2 divide-brutal-charcoal dark:divide-white">
             {notifications.map((notif) => (
               <div
                 key={notif.id}
-                className={`flex items-start justify-between p-4 hover:bg-gray-50/50 dark:hover:bg-darkBg/10 transition-colors ${
-                  !notif.is_read ? 'bg-brand-50/30 dark:bg-brand-950/10' : ''
+                className={`flex items-start justify-between p-5 transition-colors ${
+                  !notif.is_read ? 'bg-brutal-yellow text-brutal-charcoal' : 'bg-white hover:bg-gray-50/50 dark:bg-darkCard dark:hover:bg-darkBg/10'
                 }`}
               >
-                <div className="flex items-start space-x-3 pr-4">
+                <div className="flex items-start space-x-4 pr-4">
                   <span className="text-xl flex-shrink-0 mt-0.5" role="img" aria-label="notification icon">
                     {getNotifIcon(notif.type)}
                   </span>
                   <div className="space-y-1">
-                    <p className={`text-xs ${
-                      !notif.is_read ? 'font-bold text-gray-900 dark:text-white' : 'text-gray-600 dark:text-gray-400'
+                    <p className={`text-xs font-bold ${
+                      !notif.is_read ? 'text-brutal-charcoal' : 'text-gray-700 dark:text-gray-300'
                     }`}>
                       {notif.content}
                     </p>
-                    <span className="text-[10px] text-gray-400 flex items-center">
-                      <Clock className="h-3 w-3 mr-1" />
+                    <span className={`text-[10px] font-bold flex items-center ${
+                      !notif.is_read ? 'text-gray-700' : 'text-gray-400 dark:text-gray-500'
+                    }`}>
+                      <Clock className="h-3 w-3 mr-1 stroke-[2.5]" />
                       {new Date(notif.created_at).toLocaleDateString()} at{' '}
                       {new Date(notif.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </span>
@@ -87,10 +89,10 @@ const Notifications = () => {
                 {!notif.is_read && (
                   <button
                     onClick={() => handleMarkRead(notif.id)}
-                    className="rounded-lg p-1.5 text-gray-400 hover:text-emerald-500 dark:text-gray-500"
+                    className="rounded-none border-2 border-brutal-charcoal bg-white p-1.5 text-brutal-charcoal hover:bg-brutal-yellow hover:scale-105 active:scale-95 shadow-brutal-sm"
                     title="Mark as read"
                   >
-                    <Check className="h-4 w-4" />
+                    <Check className="h-4 w-4 stroke-[3]" />
                   </button>
                 )}
               </div>

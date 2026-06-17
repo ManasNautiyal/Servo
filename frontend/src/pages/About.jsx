@@ -1,6 +1,5 @@
 import React from 'react';
 import { Shield, Database, Brain, Cpu, MessageCircle, FileCheck } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 const About = () => {
   const specs = [
@@ -15,33 +14,32 @@ const About = () => {
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 dark:text-gray-100">
       <div className="mx-auto max-w-3xl text-center">
-        <h1 className="font-sans text-3xl font-extrabold tracking-tight sm:text-5xl bg-gradient-to-r from-brand-500 to-brand-700 bg-clip-text text-transparent">
+        <h1 className="font-serif text-3xl font-black tracking-tight sm:text-5xl uppercase text-brutal-charcoal dark:text-white">
           About Servo Project
         </h1>
-        <p className="mt-4 text-base text-gray-600 dark:text-gray-400">
+        <p className="mt-4 text-base font-bold text-gray-600 dark:text-gray-400">
           Servo is an academic final-year computer science project showcasing modern web architecture practices. It addresses trust, visibility, and messaging delays in traditional peer service exchanges on college campus grounds.
         </p>
       </div>
 
-      <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 text-brutal-charcoal dark:text-white">
         {specs.map((spec, idx) => {
           const Icon = spec.icon;
           return (
-            <motion.div
+            <div
               key={idx}
-              whileHover={{ y: -4 }}
-              className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm dark:border-darkBorder dark:bg-darkCard"
+              className="rounded-none border-2 border-brutal-charcoal bg-white p-6 shadow-brutal-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all dark:border-white dark:bg-darkCard dark:shadow-brutal-dark-sm dark:hover:shadow-none"
             >
               <div className="flex items-center space-x-3">
-                <div className="rounded-lg bg-brand-50 p-2 text-brand-600 dark:bg-brand-950/20 dark:text-brand-400">
-                  <Icon className="h-5 w-5" />
+                <div className="rounded-none border-2 border-brutal-charcoal bg-brutal-yellow p-2 text-brutal-charcoal shadow-brutal-sm dark:border-white">
+                  <Icon className="h-5 w-5 stroke-[2.5]" />
                 </div>
-                <h3 className="font-bold text-gray-950 dark:text-white">{spec.title}</h3>
+                <h3 className="font-black uppercase tracking-wide text-brutal-charcoal dark:text-white">{spec.title}</h3>
               </div>
-              <p className="mt-3 text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+              <p className="mt-4 text-xs font-bold text-gray-500 dark:text-gray-400 leading-relaxed">
                 {spec.desc}
               </p>
-            </motion.div>
+            </div>
           );
         })}
       </div>
